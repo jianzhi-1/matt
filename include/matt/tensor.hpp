@@ -24,6 +24,8 @@ namespace matt {
         static Tensor from_data(const std::vector<float>& data, std::vector<size_t> shape);
         static Tensor arange(float start, float stop, float step = 1.f);
 
+        static Tensor fill(const std::vector<size_t>& shape, float val);
+
         const std::vector<size_t>& shape() const { return shape_; }
         const std::vector<size_t>& strides() const { return strides_; }
         size_t ndim() const { return shape_.size(); }
@@ -56,12 +58,5 @@ namespace matt {
 
         size_t flat_index(const std::vector<size_t>& indices) const;
         static std::vector<size_t> get_default_strides(const std::vector<size_t>& shape);
-
-        private:
-        std::shared_ptr<Storage> _storage; // should you name this _storage or storage_
-        std::vector<size_t> _shape; // fix linter, want the functionality where if you mouse over a variable, it tells you the type
-        std::vector<size_t> _strides;
-        size_t _offset;
-        bool _requires_grad;
     };
 }

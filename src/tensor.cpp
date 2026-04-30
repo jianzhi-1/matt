@@ -1,4 +1,5 @@
 #include "matt/tensor.hpp"
+#include "matt/shape_utils.hpp"
 #include "matt/storage.hpp"
 #include <algorithm>
 #include <cassert>
@@ -11,35 +12,28 @@ namespace matt {
 Storage::Storage(size_t size) : data_(size, 0.f) {}
 Storage::Storage(size_t size, float fill_value) : data_(size, fill_value) {}
 
-Tensor::Tensor(std::shared_ptr<Storage::Storage> storage, std::vector<size_t> shape,
-               std::vector<size_t> strides, size_t offset = 0, bool requires_grad = false)
-    : _storage(std::move(storage)), _shape(std::move(shape)), _strides(std::move(strides)),
-      _offset(offset), _requires_grad(requires_grad) {}
+Tensor::Tensor(std::shared_ptr<Storage> storage, std::vector<size_t> shape,
+               std::vector<size_t> strides, size_t offset, bool requires_grad)
+    : storage_(std::move(storage)), shape_(std::move(shape)), strides_(std::move(strides)),
+      offset_(offset), requires_grad_(requires_grad) {}
 
-size_t _size(const std::vector<size_t> shape) { // should this be &&?
-    size_t cumulative_size = 1;
-    for (auto it : shape)
-        cumulative_size *= (*it);
-    return cumulative_size;
-}
-
-Tensor _fill(std::vector<size_t> shape, float val) {
-    size_t cumulative_size = _size(shape);
+Tensor Tensor::fill(const std::vector<size_t> &shape, float val) {
+    size_t cumulative_size = shape_utils::numel_of(shape);
     auto storage = std::make_shared<Storage>(cumulative_size, val);
     return Tensor(storage, shape, get_default_strides(shape));
 }
 
 Tensor Tensor::zeros(std::vector<size_t> shape) {
-    return _fill(shape, 0.f);
+    return Tensor::fill(shape, 0.f);
 }
 
 Tensor Tensor::ones(std::vector<size_t> shape) {
-    return _fill(shape, 1.f);
+    return Tensor::fill(shape, 1.f);
 }
 
 Tensor Tensor::from_data(const std::vector<float> &data, std::vector<size_t> shape) {
-    size_t cumulative_size = _size(shape);
-    if (cumulative_size != data.shape()) {
+    size_t cumulative_size = shape_utils::numel_of(shape);
+    if (cumulative_size != data.size()) {
         throw std::runtime_error(
             "Data size does not match shape."); // is there a more standard way of raising
                                                 // assertions, also with data.shape and
@@ -80,7 +74,7 @@ float &Tensor::at(std::vector<size_t> indices) {
 }
 
 bool Tensor::is_contiguous() const {
-    if (_offset != 0)
+    if (offset_ != 0)
         return false;
     auto expected_strides = get_default_strides(shape_);
     return expected_strides == strides_; // how does vector check equality here?
@@ -91,9 +85,14 @@ Tensor Tensor::contiguous() const {
         return *this;
     auto contiguous_tensor = Tensor::zeros(shape_);
     size_t n = numel();
+    std::vector<size_t> idx(ndim(), 0);
     for (size_t i = 0; i < n; i++) {
-        contiguous_tensor.at(i) = at(i);
-        // ...
+        contiguous_tensor.at(idx) = at(idx);
+        for (int d = ndim() - 1; d >= 0; d--) {
+            if (++idx[d] < shape_[d])
+                break;
+            idx[d] = 0;
+        }
     }
     return contiguous_tensor;
 }
@@ -105,9 +104,9 @@ size_t Tensor::flat_index(const std::vector<size_t> &indices) const {
         if (indices[i] >= shape_[i])
             throw std::runtime_error("Index out of bounds");
     }
-    size_t _flat = _offset;
+    size_t _flat = offset_;
     for (size_t i = 0; i < shape_.size(); i++) {
-        _flat += indices[i] * stride_[i];
+        _flat += indices[i] * strides_[i];
     }
     return _flat;
 }
