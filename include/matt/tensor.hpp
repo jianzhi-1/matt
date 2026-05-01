@@ -39,7 +39,7 @@ namespace matt {
         float at(std::vector<size_t> indices) const;
         float& at(std::vector<size_t> indices);
 
-        Tensor reshape(std::vector<size_t> new_shape) const;
+        Tensor reshape(const std::vector<size_t>& new_shape) const;
         Tensor transpose(size_t dim0, size_t dim1) const;
         Tensor contiguous() const;
         bool is_contiguous() const;

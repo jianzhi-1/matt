@@ -1,20 +1,18 @@
 # Matt
+
+### Build
 ```shell
-cmake -S . -B build
-cmake --build build
-./build/test
+make build
 ```
 
 ### Format
 ```shell
-cmake --build build --target format
+make format
 ```
 
 ### Testing
 ```shell
-cmake -S . -B build
-cmake --build build
-./build/tests
+make test
 
 # specific test
 ./build/tests --gtest_list_tests

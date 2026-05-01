@@ -119,4 +119,14 @@ size_t Tensor::flat_index(const std::vector<size_t> &indices) const {
     return _flat;
 }
 
+Tensor Tensor::reshape(const std::vector<size_t> &new_shape) const {
+    // TODO: remove this constraint.
+    if (!is_contiguous())
+        throw std::runtime_error("reshape: tensor is not contiguous");
+    if (shape_utils::numel_of(new_shape) != numel())
+        throw std::runtime_error("reshape: element count mismatch");
+
+    return Tensor(storage_, new_shape, get_default_strides(new_shape), 0, requires_grad_);
+}
+
 } // namespace matt

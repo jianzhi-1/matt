@@ -42,3 +42,33 @@ TEST_F(TensorTest, FromData) {
 TEST_F(TensorTest, FromDataSizeMismatchThrows) {
     EXPECT_THROW(Tensor::from_data({1, 2, 3}, {2, 3}), std::runtime_error);
 }
+
+// ── Strides ───────────────────────────────────────────────────────────────────
+TEST_F(TensorTest, RowMajorStrides) {
+    auto t = arange_6.reshape({2, 3});
+    EXPECT_EQ(t.strides()[0], 3);
+    EXPECT_EQ(t.strides()[1], 1);
+}
+
+TEST_F(TensorTest, StrideElementAccess) {
+    auto t = arange_6.reshape({2, 3});
+    EXPECT_FLOAT_EQ(t.at({0, 0}), 0.0f);
+    EXPECT_FLOAT_EQ(t.at({0, 2}), 2.0f);
+    EXPECT_FLOAT_EQ(t.at({1, 0}), 3.0f);
+    EXPECT_FLOAT_EQ(t.at({1, 2}), 5.0f);
+}
+
+// ── Reshape ───────────────────────────────────────────────────────────────────
+TEST_F(TensorTest, ReshapeShape) {
+    auto r = arange_6.reshape({3, 2});
+    EXPECT_EQ(r.shape(), (std::vector<size_t>{3, 2}));
+}
+
+TEST_F(TensorTest, ReshapePreservesValues) {
+    auto r = arange_6.reshape({2, 3});
+    EXPECT_FLOAT_EQ(r.at({1, 2}), 5.0f);
+}
+
+TEST_F(TensorTest, ReshapeMismatchThrows) {
+    EXPECT_THROW(arange_6.reshape({4, 2}), std::runtime_error);
+}
