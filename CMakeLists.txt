@@ -25,7 +25,8 @@ FetchContent_MakeAvailable(googletest)
 # Executable
 enable_testing()
 
-add_executable(tests tests/test_tensor.cpp)
+file(GLOB_RECURSE TEST_SOURCES tests/*.cpp)
+add_executable(tests ${TEST_SOURCES})
 target_link_libraries(tests
     matt
     GTest::gtest_main

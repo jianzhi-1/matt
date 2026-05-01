@@ -80,6 +80,14 @@ bool Tensor::is_contiguous() const {
     return expected_strides == strides_; // how does vector check equality here?
 }
 
+size_t Tensor::numel() const {
+    size_t n = 1;
+    for (auto d : shape_) {
+        n *= d;
+    }
+    return n;
+}
+
 Tensor Tensor::contiguous() const {
     if (is_contiguous())
         return *this;
