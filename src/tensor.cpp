@@ -126,7 +126,17 @@ Tensor Tensor::reshape(const std::vector<size_t> &new_shape) const {
     if (shape_utils::numel_of(new_shape) != numel())
         throw std::runtime_error("reshape: element count mismatch");
 
-    return Tensor(storage_, new_shape, get_default_strides(new_shape), 0, requires_grad_);
+    return Tensor(storage_, new_shape, get_default_strides(new_shape), offset_, requires_grad_);
+}
+
+Tensor Tensor::transpose(size_t dim0, size_t dim1) const {
+    if (dim0 >= ndim() || dim1 >= ndim())
+        throw std::out_of_range("transpose: invalid dimensions");
+    auto new_shape = shape_;
+    auto new_strides = strides_;
+    std::swap(new_shape[dim0], new_shape[dim1]);
+    std::swap(new_strides[dim0], new_strides[dim1]);
+    return Tensor(storage_, new_shape, new_strides, offset_, requires_grad_);
 }
 
 } // namespace matt

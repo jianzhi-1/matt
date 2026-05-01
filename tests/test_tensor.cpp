@@ -72,3 +72,52 @@ TEST_F(TensorTest, ReshapePreservesValues) {
 TEST_F(TensorTest, ReshapeMismatchThrows) {
     EXPECT_THROW(arange_6.reshape({4, 2}), std::runtime_error);
 }
+
+// ── Transpose ─────────────────────────────────────────────────────────────────
+TEST_F(TensorTest, TransposeShape) {
+    auto t = Tensor::from_data({1, 2, 3, 4, 5, 6}, {2, 3});
+    auto tt = t.transpose(0, 1);
+    EXPECT_EQ(tt.shape(), (std::vector<size_t>{3, 2}));
+}
+
+TEST_F(TensorTest, TransposeValues) {
+    auto t = Tensor::from_data({1, 2, 3, 4, 5, 6}, {2, 3});
+    auto tt = t.transpose(0, 1);
+    for (size_t i = 0; i < 3; i++) {
+        for (size_t j = 0; j < 2; j++) {
+            EXPECT_FLOAT_EQ(tt.at({i, j}), t.at({j, i}));
+        }
+    }
+}
+
+TEST_F(TensorTest, TransposeIsView) {
+    auto t = Tensor::from_data({1, 2, 3, 4, 5, 6}, {2, 3});
+    auto tt = t.transpose(0, 1);
+    tt.at({0, 0}) = 99.0f;
+    EXPECT_FLOAT_EQ(t.at({0, 0}), 99.0f);
+}
+
+TEST_F(TensorTest, TransposeInvalidDimThrows) {
+    EXPECT_THROW(zeros_2x3.transpose(0, 5), std::out_of_range);
+}
+
+// ── Contiguous ────────────────────────────────────────────────────────────────
+TEST_F(TensorTest, FreshTensorIsContiguous) {
+    EXPECT_TRUE(zeros_2x3.is_contiguous());
+}
+
+TEST_F(TensorTest, TransposeIsNotContiguous) {
+    auto tt = zeros_2x3.transpose(0, 1);
+    EXPECT_FALSE(tt.is_contiguous());
+}
+
+TEST_F(TensorTest, MakeContiguousCopiesCorrectly) {
+    auto t = Tensor::from_data({1, 2, 3, 4, 5, 6}, {2, 3}).transpose(0, 1);
+    auto tc = t.contiguous();
+    EXPECT_TRUE(tc.is_contiguous());
+    for (size_t i = 0; i < 3; i++) {
+        for (size_t j = 0; j < 2; j++) {
+            EXPECT_FLOAT_EQ(tc.at({i, j}), t.at({i, j}));
+        }
+    }
+}
