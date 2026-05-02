@@ -129,6 +129,37 @@ Tensor Tensor::reshape(const std::vector<size_t> &new_shape) const {
     return Tensor(storage_, new_shape, get_default_strides(new_shape), offset_, requires_grad_);
 }
 
+Tensor Tensor::expand(const std::vector<size_t> &new_shape) const {
+    if (new_shape.size() != ndim())
+        throw std::runtime_error("expand: rank mismatch");
+    auto new_strides = strides_;
+    for (size_t i = 0; i < ndim(); i++) {
+        if (shape_[i] == 1 && new_shape[i] != 1) {
+            new_strides[i] = 0;
+        } else if (shape_[i] != new_shape[i])
+            throw std::runtime_error("expand: incompatible shapes");
+    }
+    return Tensor(storage_, new_shape, new_strides, offset_, requires_grad_);
+}
+
+// TODO: support range slicing
+Tensor Tensor::slice(size_t dim, size_t index) const {
+    if (dim >= ndim())
+        throw std::runtime_error("slice: invalid dimension");
+    if (index >= shape_[dim])
+        throw std::out_of_range("slice: index out of bound");
+    std::vector<size_t> new_shape;
+    std::vector<size_t> new_strides;
+    for (int i = 0; i < shape_.size(); i++) {
+        if (i == dim)
+            continue;
+        new_shape.push_back(shape_[i]);
+        new_strides.push_back(strides_[i]);
+    }
+    size_t new_offset = offset_ + index * strides_[dim];
+    return Tensor(storage_, new_shape, new_strides, new_offset, requires_grad_);
+}
+
 Tensor Tensor::transpose(size_t dim0, size_t dim1) const {
     if (dim0 >= ndim() || dim1 >= ndim())
         throw std::out_of_range("transpose: invalid dimensions");
