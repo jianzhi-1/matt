@@ -25,4 +25,16 @@ std::vector<Tensor> MatmulBackward::backward(const Tensor &grad_out) const {
             ops::MatmulOp::forward(Tensor(a_).transpose(0, 1), grad_out)};
 }
 
+std::vector<Tensor> ReluBackward::backward(const Tensor &grad_out) const {
+    return {ops::elementwise(Tensor(a_), grad_out,
+                             [](float a, float g) { return (a > 0.f) ? g : 0.f; })};
+}
+
+std::vector<Tensor> SumBackward::backward(const Tensor &grad_out) const {
+    if (grad_out.numel() != 1)
+        throw std::runtime_error("SumBackward: gradient of unexpeced shape");
+    float scale = grad_out.at({0});
+    return {Tensor::fill(a_.get()->shape(), scale)};
+}
+
 } // namespace matt
