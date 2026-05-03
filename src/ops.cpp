@@ -1,30 +1,38 @@
 #include "matt/ops.hpp"
+#include "matt/shape_utils.hpp"
+#include "matt/tensor.hpp"
 #include <cmath>
 #include <stdexcept>
 
 namespace matt {
 namespace ops {
 
-Tensor add(const Tensor &a, const Tensor &b) {
-    if (a.shape() != b.shape())
-        throw std::runtime_error("add: shape mismatch");
-    auto out = Tensor::zeros(a.shape());
-    size_t n = a.numel();
+Tensor elementwise(const Tensor &a, const Tensor &b, std::function<float(float, float)> op) {
+    auto out_shape = shape_utils::broadcast_shape(a.shape(), b.shape());
+    auto a_broadcasted = a.broadcast_to(out_shape);
+    auto b_broadcasted = b.broadcast_to(out_shape);
+
+    auto out = Tensor::zeros(out_shape);
+    size_t n = out.numel();
+
+    std::vector<size_t> idx(out_shape.size(), 0);
     for (size_t i = 0; i < n; i++) {
-        out.data_ptr()[i] = a.data_ptr()[i] + b.data_ptr()[i];
+        out.at(idx) = op(a_broadcasted.at(idx), b_broadcasted.at(idx));
+        for (int d = (int)out_shape.size() - 1; d >= 0; d--) {
+            if (++idx[d] < out_shape[d])
+                break;
+            idx[d] = 0;
+        }
     }
     return out;
 }
 
+Tensor add(const Tensor &a, const Tensor &b) {
+    return elementwise(a, b, [](float x, float y) { return x + y; });
+}
+
 Tensor mul(const Tensor &a, const Tensor &b) {
-    if (a.shape() != b.shape())
-        throw std::runtime_error("multiply: shape mismatch");
-    auto out = Tensor::zeros(a.shape());
-    size_t n = a.numel();
-    for (size_t i = 0; i < n; i++) {
-        out.data_ptr()[i] = a.data_ptr()[i] * b.data_ptr()[i];
-    }
-    return out;
+    return elementwise(a, b, [](float x, float y) { return x * y; });
 }
 
 Tensor matmul(const Tensor &a, const Tensor &b) {

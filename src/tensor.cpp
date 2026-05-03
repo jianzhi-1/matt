@@ -142,8 +142,32 @@ Tensor Tensor::expand(const std::vector<size_t> &new_shape) const {
     return Tensor(storage_, new_shape, new_strides, offset_, requires_grad_);
 }
 
+Tensor Tensor::broadcast_to(const std::vector<size_t> &target_shape) const {
+    auto final_shape = shape_utils::broadcast_shape(shape_, target_shape);
+    if (final_shape != target_shape)
+        throw std::runtime_error("broadcast_to: invalid shape");
+    // TODO: make the following logic less convoluted.
+    std::vector<size_t> new_strides = strides_;
+    std::vector<size_t> tmp_shape = shape_;
+    reverse(tmp_shape.begin(), tmp_shape.end());
+    reverse(new_strides.begin(), new_strides.end());
+    while (tmp_shape.size() < target_shape.size()) {
+        tmp_shape.push_back(1);
+        new_strides.push_back(0);
+    }
+    reverse(tmp_shape.begin(), tmp_shape.end());
+    reverse(new_strides.begin(), new_strides.end());
+    for (int i = 0; i < tmp_shape.size(); i++) {
+        if ((tmp_shape[i] == 1) && (target_shape[i] != 1)) {
+            new_strides[i] = 0;
+        }
+    }
+    return Tensor(storage_, target_shape, new_strides, offset_, requires_grad_);
+}
+
 // TODO: support range slicing
 Tensor Tensor::slice(size_t dim, size_t index) const {
+    // TODO: support 0D tensors (?)
     if (dim >= ndim())
         throw std::runtime_error("slice: invalid dimension");
     if (index >= shape_[dim])

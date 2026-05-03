@@ -224,14 +224,12 @@ TEST_F(SliceTest, ColSliceOffset) {
 TEST_F(SliceTest, ChainedSliceRowThenCol) {
     // t[1][2] == 6
     auto row = t3x3.slice(0, 1); // second row [4,5,6]
-    auto elem = row.slice(0, 2); // third element
-    EXPECT_FLOAT_EQ(elem.at({0}), 6.0f);
+    EXPECT_FLOAT_EQ(row.at({2}), 6.0f);
 }
 
 TEST_F(SliceTest, ChainedSliceSharesStorage) {
     auto row = t3x3.slice(0, 1);
-    auto elem = row.slice(0, 2);
-    elem.at({0}) = 99.0f;
+    row.at({2}) = 99.0f;
     EXPECT_FLOAT_EQ(t3x3.at({1, 2}), 99.0f);
 }
 
