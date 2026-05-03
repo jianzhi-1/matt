@@ -4,12 +4,11 @@
 
 namespace matt {
 
-BinaryGradFn::BinaryGradFn(Tensor a, Tensor b)
-    : a_(std::make_shared<Tensor>(std::move(a))), b_(std::make_shared<Tensor>(std::move(b))) {
+BinaryGradFn::BinaryGradFn(Tensor a, Tensor b) : a_(a.data()), b_(b.data()) {
     inputs = {a_, b_};
 }
 
-UnaryGradFn::UnaryGradFn(Tensor a) : a_(std::make_shared<Tensor>(std::move(a))) {
+UnaryGradFn::UnaryGradFn(Tensor a) : a_(a.data()) {
     inputs = {a_};
 }
 
@@ -18,12 +17,12 @@ std::vector<Tensor> AddBackward::backward(const Tensor &grad_out) const {
 }
 
 std::vector<Tensor> MulBackward::backward(const Tensor &grad_out) const {
-    return {ops::MulOp::forward(grad_out, *b_), ops::MulOp::forward(grad_out, *a_)};
+    return {ops::MulOp::forward(grad_out, Tensor(b_)), ops::MulOp::forward(grad_out, Tensor(a_))};
 }
 
 std::vector<Tensor> MatmulBackward::backward(const Tensor &grad_out) const {
-    return {ops::MatmulOp::forward(grad_out, b_->transpose(0, 1)),
-            ops::MatmulOp::forward(a_->transpose(0, 1), grad_out)};
+    return {ops::MatmulOp::forward(grad_out, Tensor(b_).transpose(0, 1)),
+            ops::MatmulOp::forward(Tensor(a_).transpose(0, 1), grad_out)};
 }
 
 } // namespace matt

@@ -14,8 +14,13 @@ Storage::Storage(size_t size, float fill_value) : data_(size, fill_value) {}
 
 Tensor::Tensor(std::shared_ptr<Storage> storage, std::vector<size_t> shape,
                std::vector<size_t> strides, size_t offset, bool requires_grad)
-    : storage_(std::move(storage)), shape_(std::move(shape)), strides_(std::move(strides)),
-      offset_(offset), requires_grad_(requires_grad) {}
+    : data_(std::make_shared<TensorData>()) {
+    data_->storage_ = std::move(storage);
+    data_->shape_ = std::move(shape);
+    data_->strides_ = std::move(strides);
+    data_->offset_ = offset;
+    data_->requires_grad_ = requires_grad;
+}
 
 Tensor Tensor::fill(const std::vector<size_t> &shape, float val) {
     size_t cumulative_size = shape_utils::numel_of(shape);
@@ -65,24 +70,24 @@ std::vector<size_t> Tensor::get_default_strides(const std::vector<size_t> &shape
 }
 
 float Tensor::at(std::vector<size_t> indices) const {
-    return (storage_->data())[flat_index(indices)];
+    return (data_->storage_->data())[flat_index(indices)];
 }
 
 float &Tensor::at(std::vector<size_t> indices) {
-    return (
-        storage_->data())[flat_index(indices)]; // is it possible to get rid of these duplicates?
+    return (data_->storage_
+                ->data())[flat_index(indices)]; // is it possible to get rid of these duplicates?
 }
 
 bool Tensor::is_contiguous() const {
-    if (offset_ != 0)
+    if (data_->offset_ != 0)
         return false;
-    auto expected_strides = get_default_strides(shape_);
-    return expected_strides == strides_; // how does vector check equality here?
+    auto expected_strides = get_default_strides(data_->shape_);
+    return expected_strides == data_->strides_; // how does vector check equality here?
 }
 
 size_t Tensor::numel() const {
     size_t n = 1;
-    for (auto d : shape_) {
+    for (auto d : data_->shape_) {
         n *= d;
     }
     return n;
@@ -91,13 +96,13 @@ size_t Tensor::numel() const {
 Tensor Tensor::contiguous() const {
     if (is_contiguous())
         return *this;
-    auto contiguous_tensor = Tensor::zeros(shape_);
+    auto contiguous_tensor = Tensor::zeros(data_->shape_);
     size_t n = numel();
     std::vector<size_t> idx(ndim(), 0);
     for (size_t i = 0; i < n; i++) {
         contiguous_tensor.at(idx) = at(idx);
         for (int d = ndim() - 1; d >= 0; d--) {
-            if (++idx[d] < shape_[d])
+            if (++idx[d] < data_->shape_[d])
                 break;
             idx[d] = 0;
         }
@@ -106,15 +111,15 @@ Tensor Tensor::contiguous() const {
 }
 
 size_t Tensor::flat_index(const std::vector<size_t> &indices) const {
-    if (indices.size() != shape_.size())
+    if (indices.size() != data_->shape_.size())
         throw std::runtime_error("Index rank mismatch.");
-    for (int i = 0; i < shape_.size(); i++) {
-        if (indices[i] >= shape_[i])
+    for (int i = 0; i < data_->shape_.size(); i++) {
+        if (indices[i] >= data_->shape_[i])
             throw std::runtime_error("Index out of bounds");
     }
-    size_t _flat = offset_;
-    for (size_t i = 0; i < shape_.size(); i++) {
-        _flat += indices[i] * strides_[i];
+    size_t _flat = data_->offset_;
+    for (size_t i = 0; i < data_->shape_.size(); i++) {
+        _flat += indices[i] * data_->strides_[i];
     }
     return _flat;
 }
@@ -126,29 +131,30 @@ Tensor Tensor::reshape(const std::vector<size_t> &new_shape) const {
     if (shape_utils::numel_of(new_shape) != numel())
         throw std::runtime_error("reshape: element count mismatch");
 
-    return Tensor(storage_, new_shape, get_default_strides(new_shape), offset_, requires_grad_);
+    return Tensor(data_->storage_, new_shape, get_default_strides(new_shape), data_->offset_,
+                  data_->requires_grad_);
 }
 
 Tensor Tensor::expand(const std::vector<size_t> &new_shape) const {
     if (new_shape.size() != ndim())
         throw std::runtime_error("expand: rank mismatch");
-    auto new_strides = strides_;
+    auto new_strides = data_->strides_;
     for (size_t i = 0; i < ndim(); i++) {
-        if (shape_[i] == 1 && new_shape[i] != 1) {
+        if (data_->shape_[i] == 1 && new_shape[i] != 1) {
             new_strides[i] = 0;
-        } else if (shape_[i] != new_shape[i])
+        } else if (data_->shape_[i] != new_shape[i])
             throw std::runtime_error("expand: incompatible shapes");
     }
-    return Tensor(storage_, new_shape, new_strides, offset_, requires_grad_);
+    return Tensor(data_->storage_, new_shape, new_strides, data_->offset_, data_->requires_grad_);
 }
 
 Tensor Tensor::broadcast_to(const std::vector<size_t> &target_shape) const {
-    auto final_shape = shape_utils::broadcast_shape(shape_, target_shape);
+    auto final_shape = shape_utils::broadcast_shape(data_->shape_, target_shape);
     if (final_shape != target_shape)
         throw std::runtime_error("broadcast_to: invalid shape");
     // TODO: make the following logic less convoluted.
-    std::vector<size_t> new_strides = strides_;
-    std::vector<size_t> tmp_shape = shape_;
+    std::vector<size_t> new_strides = data_->strides_;
+    std::vector<size_t> tmp_shape = data_->shape_;
     std::reverse(tmp_shape.begin(), tmp_shape.end());
     std::reverse(new_strides.begin(), new_strides.end());
     while (tmp_shape.size() < target_shape.size()) {
@@ -162,7 +168,8 @@ Tensor Tensor::broadcast_to(const std::vector<size_t> &target_shape) const {
             new_strides[i] = 0;
         }
     }
-    return Tensor(storage_, target_shape, new_strides, offset_, requires_grad_);
+    return Tensor(data_->storage_, target_shape, new_strides, data_->offset_,
+                  data_->requires_grad_);
 }
 
 // TODO: support range slicing
@@ -170,28 +177,28 @@ Tensor Tensor::slice(size_t dim, size_t index) const {
     // TODO: support 0D tensors (?)
     if (dim >= ndim())
         throw std::runtime_error("slice: invalid dimension");
-    if (index >= shape_[dim])
+    if (index >= data_->shape_[dim])
         throw std::out_of_range("slice: index out of bound");
     std::vector<size_t> new_shape;
     std::vector<size_t> new_strides;
-    for (int i = 0; i < shape_.size(); i++) {
+    for (int i = 0; i < data_->shape_.size(); i++) {
         if (i == dim)
             continue;
-        new_shape.push_back(shape_[i]);
-        new_strides.push_back(strides_[i]);
+        new_shape.push_back(data_->shape_[i]);
+        new_strides.push_back(data_->strides_[i]);
     }
-    size_t new_offset = offset_ + index * strides_[dim];
-    return Tensor(storage_, new_shape, new_strides, new_offset, requires_grad_);
+    size_t new_offset = data_->offset_ + index * data_->strides_[dim];
+    return Tensor(data_->storage_, new_shape, new_strides, new_offset, data_->requires_grad_);
 }
 
 Tensor Tensor::transpose(size_t dim0, size_t dim1) const {
     if (dim0 >= ndim() || dim1 >= ndim())
         throw std::out_of_range("transpose: invalid dimensions");
-    auto new_shape = shape_;
-    auto new_strides = strides_;
+    auto new_shape = data_->shape_;
+    auto new_strides = data_->strides_;
     std::swap(new_shape[dim0], new_shape[dim1]);
     std::swap(new_strides[dim0], new_strides[dim1]);
-    return Tensor(storage_, new_shape, new_strides, offset_, requires_grad_);
+    return Tensor(data_->storage_, new_shape, new_strides, data_->offset_, data_->requires_grad_);
 }
 
 } // namespace matt
