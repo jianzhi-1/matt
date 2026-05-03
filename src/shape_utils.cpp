@@ -1,4 +1,5 @@
 #include "matt/shape_utils.hpp"
+#include <algorithm>
 namespace matt {
 namespace shape_utils {
 size_t numel_of(const std::vector<size_t> &shape) {

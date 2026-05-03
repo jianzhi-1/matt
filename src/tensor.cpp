@@ -149,14 +149,14 @@ Tensor Tensor::broadcast_to(const std::vector<size_t> &target_shape) const {
     // TODO: make the following logic less convoluted.
     std::vector<size_t> new_strides = strides_;
     std::vector<size_t> tmp_shape = shape_;
-    reverse(tmp_shape.begin(), tmp_shape.end());
-    reverse(new_strides.begin(), new_strides.end());
+    std::reverse(tmp_shape.begin(), tmp_shape.end());
+    std::reverse(new_strides.begin(), new_strides.end());
     while (tmp_shape.size() < target_shape.size()) {
         tmp_shape.push_back(1);
         new_strides.push_back(0);
     }
-    reverse(tmp_shape.begin(), tmp_shape.end());
-    reverse(new_strides.begin(), new_strides.end());
+    std::reverse(tmp_shape.begin(), tmp_shape.end());
+    std::reverse(new_strides.begin(), new_strides.end());
     for (int i = 0; i < tmp_shape.size(); i++) {
         if ((tmp_shape[i] == 1) && (target_shape[i] != 1)) {
             new_strides[i] = 0;
