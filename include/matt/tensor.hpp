@@ -1,5 +1,6 @@
 #pragma once
 #include "storage.hpp"
+#include "grad_fn.hpp"
 #include <vector>
 #include <memory>
 #include <functional>
@@ -7,8 +8,10 @@
 #include <numeric>
 #include <iostream>
 namespace matt {
+    class GradFn;
+
     class Tensor {
-        public:
+    public:
         Tensor() = default;
 
         Tensor(
@@ -18,6 +21,9 @@ namespace matt {
             size_t offset = 0,
             bool requires_grad = false
         );
+
+        std::shared_ptr<GradFn> grad_fn;
+        std::shared_ptr<Tensor> grad;
 
         static Tensor zeros(std::vector<size_t> shape);
         static Tensor ones(std::vector<size_t> shape);
@@ -53,7 +59,7 @@ namespace matt {
         void print(std::ostream& os = std::cout) const;
         std::string shape_str() const;
 
-        private:
+    private:
         std::shared_ptr<Storage> storage_;
         std::vector<size_t> shape_;
         std::vector<size_t> strides_;

@@ -9,6 +9,7 @@ add_library(matt
     src/tensor.cpp
     src/ops.cpp
     src/shape_utils.cpp
+    src/grad_fn.cpp
 )
 target_include_directories(matt PUBLIC include)
 

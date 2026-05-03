@@ -7,6 +7,8 @@
 namespace matt {
 namespace ops {
 
+namespace {
+
 Tensor elementwise(const Tensor &a, const Tensor &b, std::function<float(float, float)> op) {
     auto out_shape = shape_utils::broadcast_shape(a.shape(), b.shape());
     auto a_broadcasted = a.broadcast_to(out_shape);
@@ -27,15 +29,47 @@ Tensor elementwise(const Tensor &a, const Tensor &b, std::function<float(float, 
     return out;
 }
 
+template <typename Op> Tensor apply_binary(const Tensor &a, const Tensor &b) {
+    Tensor out = Op::forward(a, b);
+    if (a.requires_grad() || b.requires_grad()) {
+        out.grad_fn = Op::make_grad_fn(a, b);
+        out.set_requires_grad(true);
+    }
+    return out;
+}
+
+template <typename Op> Tensor apply_unary(const Tensor &a) {
+    Tensor out = Op::forward(a);
+    if (a.requires_grad()) {
+        out.grad_fn = Op::make_grad_fn(a);
+        out.set_requires_grad(true);
+    }
+    return out;
+}
+
+} // namespace
+
 Tensor add(const Tensor &a, const Tensor &b) {
-    return elementwise(a, b, [](float x, float y) { return x + y; });
+    return apply_binary<AddOp>(a, b);
 }
 
 Tensor mul(const Tensor &a, const Tensor &b) {
-    return elementwise(a, b, [](float x, float y) { return x * y; });
+    return apply_binary<MulOp>(a, b);
 }
 
 Tensor matmul(const Tensor &a, const Tensor &b) {
+    return apply_binary<MatmulOp>(a, b);
+}
+
+Tensor AddOp::forward(const Tensor &a, const Tensor &b) {
+    return elementwise(a, b, [](float x, float y) { return x + y; });
+}
+
+Tensor MulOp::forward(const Tensor &a, const Tensor &b) {
+    return elementwise(a, b, [](float x, float y) { return x * y; });
+}
+
+Tensor MatmulOp::forward(const Tensor &a, const Tensor &b) {
     if (a.ndim() != 2 || b.ndim() != 2)
         throw std::runtime_error("matmul: only 2D matrices allowed");
     if (a.shape()[1] != b.shape()[0])
