@@ -10,6 +10,16 @@
 namespace matt {
     class GradFn;
 
+    class TensorData {
+        friend class Tensor;
+    private:
+        std::shared_ptr<Storage> storage_;
+        std::vector<size_t> shape_;
+        std::vector<size_t> strides_;
+        size_t offset_ = 0;
+        bool requires_grad_ = false;
+    };
+
     class Tensor {
     public:
         Tensor() = default;
@@ -21,6 +31,7 @@ namespace matt {
             size_t offset = 0,
             bool requires_grad = false
         );
+        explicit Tensor(std::shared_ptr<TensorData> data): data_(std::move(data)){};
 
         std::shared_ptr<GradFn> grad_fn;
         std::shared_ptr<Tensor> grad;
@@ -32,15 +43,15 @@ namespace matt {
 
         static Tensor fill(const std::vector<size_t>& shape, float val);
 
-        const std::vector<size_t>& shape() const { return shape_; }
-        const std::vector<size_t>& strides() const { return strides_; }
-        size_t ndim() const { return shape_.size(); }
+        const std::vector<size_t>& shape() const { return data_->shape_; }
+        const std::vector<size_t>& strides() const { return data_->strides_; }
+        size_t ndim() const { return data_->shape_.size(); }
         size_t numel() const;
-        size_t offset() const { return offset_; }
-        bool requires_grad() const { return requires_grad_; }
+        size_t offset() const { return data_->offset_; }
+        bool requires_grad() const { return data_->requires_grad_; }
 
-        float* data_ptr() { return storage_->data() + offset_; }
-        const float* data_ptr() const { return storage_->data() + offset_; }
+        float* data_ptr() { return data_->storage_->data() + data_->offset_; }
+        const float* data_ptr() const { return data_->storage_->data() + data_->offset_; }
 
         float at(std::vector<size_t> indices) const;
         float& at(std::vector<size_t> indices);
@@ -54,18 +65,15 @@ namespace matt {
         Tensor contiguous() const;
         bool is_contiguous() const;
 
-        void set_requires_grad(bool val) { requires_grad_ = val; }
+        void set_requires_grad(bool val) { data_ -> requires_grad_ = val; }
 
         void print(std::ostream& os = std::cout) const;
         std::string shape_str() const;
+        void backward();
+        std::shared_ptr<TensorData> data() const { return data_; }
 
     private:
-        std::shared_ptr<Storage> storage_;
-        std::vector<size_t> shape_;
-        std::vector<size_t> strides_;
-        size_t offset_ = 0;
-        bool requires_grad_ = false;
-
+        std::shared_ptr<TensorData> data_;
         size_t flat_index(const std::vector<size_t>& indices) const;
         static std::vector<size_t> get_default_strides(const std::vector<size_t>& shape);
     };
