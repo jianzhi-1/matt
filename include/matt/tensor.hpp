@@ -69,4 +69,6 @@ namespace matt {
         size_t flat_index(const std::vector<size_t>& indices) const;
         static std::vector<size_t> get_default_strides(const std::vector<size_t>& shape);
     };
+
+    bool allclose(const Tensor& a, const Tensor& b, float tol=1e-5f);
 }
