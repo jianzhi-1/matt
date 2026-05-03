@@ -52,4 +52,19 @@ public:
     const char* name() const override { return "MatmulBackward"; }
 };
 
+class ReluBackward : public UnaryGradFn {
+public:
+    using UnaryGradFn::UnaryGradFn;
+    std::vector<Tensor> backward(const Tensor& grad_out) const override;
+    const char* name() const override { return "ReluBackward"; }
+};
+
+class SumBackward : public UnaryGradFn {
+public:
+    using UnaryGradFn::UnaryGradFn;
+    std::vector<Tensor> backward(const Tensor& grad_out) const override;
+    const char* name() const override { return "SumBackward"; }
+};
+
+
 }

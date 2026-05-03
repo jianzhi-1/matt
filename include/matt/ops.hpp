@@ -39,6 +39,16 @@ public:
     static Tensor forward(const Tensor& a, const Tensor& b);
 };
 
+class ReluOp: public UnaryOp<ReluBackward>{
+public:
+    static Tensor forward(const Tensor& a);
+};
+
+class SumOp: public UnaryOp<SumBackward>{
+public:
+    static Tensor forward(const Tensor& a);
+};
+
 
 Tensor add(const Tensor& a, const Tensor& b);
 Tensor mul(const Tensor& a, const Tensor& b);
@@ -46,6 +56,11 @@ Tensor matmul(const Tensor& a, const Tensor& b);
 Tensor relu(const Tensor& a);
 Tensor sum(const Tensor& a);
 Tensor softmax(const Tensor& a, int dim);
+
+Tensor elementwise_unary(const Tensor &a, std::function<float(float)> op);
+Tensor elementwise(const Tensor &a, const Tensor &b, std::function<float(float, float)> op);
+Tensor accumulate(const Tensor &a, std::function<float(float, float)> op);
+
 
 }
 }

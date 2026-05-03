@@ -12,6 +12,12 @@ namespace matt {
 
     class TensorData {
         friend class Tensor;
+    public:
+        // grad_fn stores the derivative f' of the function f that produced this Tensor as a result.
+        std::shared_ptr<GradFn> grad_fn;
+        // grad stores the numerical derivative; used by optimizers during their .step().
+        std::shared_ptr<TensorData> grad;
+        const std::vector<size_t>& shape() const { return shape_; }
     private:
         std::shared_ptr<Storage> storage_;
         std::vector<size_t> shape_;
@@ -32,9 +38,6 @@ namespace matt {
             bool requires_grad = false
         );
         explicit Tensor(std::shared_ptr<TensorData> data): data_(std::move(data)){};
-
-        std::shared_ptr<GradFn> grad_fn;
-        std::shared_ptr<Tensor> grad;
 
         static Tensor zeros(std::vector<size_t> shape);
         static Tensor ones(std::vector<size_t> shape);

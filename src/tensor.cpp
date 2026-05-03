@@ -1,4 +1,5 @@
 #include "matt/tensor.hpp"
+#include "matt/ops.hpp"
 #include "matt/shape_utils.hpp"
 #include "matt/storage.hpp"
 #include <algorithm>
@@ -6,6 +7,7 @@
 #include <memory>
 #include <sstream>
 #include <stdexcept>
+#include <unordered_set>
 #include <vector>
 
 namespace matt {
@@ -199,6 +201,59 @@ Tensor Tensor::transpose(size_t dim0, size_t dim1) const {
     std::swap(new_shape[dim0], new_shape[dim1]);
     std::swap(new_strides[dim0], new_strides[dim1]);
     return Tensor(data_->storage_, new_shape, new_strides, data_->offset_, data_->requires_grad_);
+}
+
+void Tensor::backward() {
+    // TODO: improve verbosity of error messages
+    if (numel() != 1)
+        throw std::runtime_error("backward: for now, can only call on scalar values");
+    data_->grad = Tensor::ones(data_->shape_).data();
+
+    std::vector<TensorData *> topo;
+    std::unordered_set<TensorData *> visited;
+
+    std::function<void(TensorData *)> dfs;
+
+    dfs = [&](TensorData *node) {
+        visited.insert(node);
+        if (!node->grad_fn)
+            return;
+        for (auto it : node->grad_fn->inputs) {
+            if (visited.find(it.get()) != visited.end())
+                continue;
+            dfs(it.get());
+        }
+        topo.push_back(node);
+    };
+    dfs(data_.get());
+    std::reverse(topo.begin(), topo.end());
+
+    for (auto t : topo) {
+        if (!t->grad_fn)
+            continue;
+        if (!t->grad)
+            throw std::runtime_error("backward: gradient should have existed");
+        auto input_grads = t->grad_fn->backward(Tensor(t->grad));
+        auto &inputs = t->grad_fn->inputs;
+        for (size_t i = 0; i < inputs.size(); i++) {
+            if (!inputs[i]->requires_grad_)
+                continue;
+            if (!inputs[i]->grad) {
+                inputs[i]->grad = input_grads[i].data();
+            } else {
+                auto accumulated_gradient = ops::add(Tensor(inputs[i]->grad), input_grads[i]);
+                inputs[i]->grad = accumulated_gradient.data();
+            }
+        }
+    }
+}
+
+bool allclose(const Tensor &a, const Tensor &b, float tol) {
+    auto imm =
+        ops::elementwise(a, b, [tol](float x, float y) { return abs(x - y) < tol ? 0.0 : 1.0; });
+    auto out = ops::accumulate(imm, [](float x, float y) { return x + y; });
+    // TODO: please use a better way.
+    return out.at({0}) < 0.5;
 }
 
 } // namespace matt
