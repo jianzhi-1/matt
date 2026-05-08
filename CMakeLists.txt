@@ -10,6 +10,7 @@ add_library(matt
     src/ops.cpp
     src/shape_utils.cpp
     src/grad_fn.cpp
+    src/nn/module.cpp
 )
 target_include_directories(matt PUBLIC include)
 
