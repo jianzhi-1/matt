@@ -1,5 +1,5 @@
 #pragma once
-#include "tensor.hpp"
+#include "matt/tensor.hpp"
 #include <string>
 #include <vector>
 #include <unordered_map>

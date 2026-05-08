@@ -1,4 +1,4 @@
-#include "module.hpp"
+#include "matt/nn/module.hpp"
 #include <stdexcept>
 namespace matt {
 namespace nn {
