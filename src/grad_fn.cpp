@@ -16,6 +16,10 @@ std::vector<Tensor> AddBackward::backward(const Tensor &grad_out) const {
     return {grad_out, grad_out};
 }
 
+std::vector<Tensor> SubBackward::backward(const Tensor &grad_out) const {
+    return {grad_out, ops::MulOp::forward(grad_out, Tensor::fill(grad_out.shape(), -1.0f))};
+}
+
 std::vector<Tensor> MulBackward::backward(const Tensor &grad_out) const {
     return {ops::MulOp::forward(grad_out, Tensor(b_)), ops::MulOp::forward(grad_out, Tensor(a_))};
 }
