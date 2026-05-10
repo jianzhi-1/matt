@@ -7,6 +7,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 file(GLOB_RECURSE MATT_SOURCES "src/*.cpp")
 add_library(matt ${MATT_SOURCES})
 target_include_directories(matt PUBLIC include)
+set_target_properties(matt PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
 # Google test
 include(FetchContent)
