@@ -11,29 +11,33 @@ void Module::register_parameter(const std::string &name, const Tensor &t) {
 }
 
 std::vector<std::pair<std::string, Tensor>> Module::named_parameters() const {
-    // TODO: recurse into submodules to get all parameters
-    // for now, just return all parameters in self.
     std::vector<std::pair<std::string, Tensor>> named_params;
-    named_params.reserve(parameters_.size());
-    for (const auto &param_name : parameter_names_) {
-        named_params.push_back(std::make_pair(param_name, parameters_.at(param_name)));
+    for (const auto &pname : parameter_names_) {
+        named_params.push_back({pname, parameters_.at(pname)});
+    }
+    for (const auto &submodule_name : submodule_names_) {
+        for (auto &[name, t] : submodules_.at(submodule_name)->named_parameters()) {
+            named_params.push_back({submodule_name + "." + name, t});
+        }
     }
     return named_params;
 }
 
 std::vector<Tensor> Module::parameters() const {
-    // TODO: recurse into submodules to get all parameters
-    // for now, just return all parameters in self.
     std::vector<Tensor> params;
-    params.reserve(parameters_.size());
-    for (const auto &[key, value] : parameters_) {
-        params.push_back(value);
+    for (auto &[name, t] : named_parameters()) {
+        params.push_back(t);
     }
     return params;
 }
 
 void Module::zero_grad() {
-    // TODO
+    for (const auto &pname : parameter_names_) {
+        parameters_.at(pname).grad = nullptr;
+    }
+    for (const auto &submodule_name : submodule_names_) {
+        submodules_.at(submodule_name)->zero_grad();
+    }
 }
 
 void Module::train(bool mode) {

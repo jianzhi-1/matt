@@ -37,6 +37,12 @@ TEST_F(LinearTest, BiasShape) {
     EXPECT_EQ(params[1].second.shape(), (std::vector<size_t>{8}));
 }
 
+TEST_F(LinearTest, ParametersRequireGrad) {
+    for (auto &p : linear.parameters()) {
+        EXPECT_TRUE(p.requires_grad());
+    }
+}
+
 // ── Forward ───────────────────────────────────────────────────────────────────
 
 TEST_F(LinearTest, ForwardOutputShape) {
@@ -56,4 +62,56 @@ TEST_F(LinearTest, ForwardNoBiasOutputShape) {
     Linear no_bias{4, 8, false};
     Tensor out = no_bias.forward(x);
     EXPECT_EQ(out.shape(), (std::vector<size_t>{2, 8}));
+}
+
+// ── Training mode ─────────────────────────────────────────────────────────────
+
+TEST_F(LinearTest, DefaultIsTraining) {
+    EXPECT_TRUE(linear.is_training());
+}
+
+TEST_F(LinearTest, EvalMode) {
+    linear.train(false);
+    EXPECT_FALSE(linear.is_training());
+}
+
+TEST_F(LinearTest, TrainModeRoundtrip) {
+    linear.train(false);
+    linear.train(true);
+    EXPECT_TRUE(linear.is_training());
+}
+
+// ── Autograd wiring ───────────────────────────────────────────────────────────
+
+TEST_F(LinearTest, ForwardOutputHasGradFn) {
+    // Output of a linear layer applied to a non-grad input still has a grad_fn
+    // because the parameters require grad.
+    Tensor out = linear.forward(x);
+    EXPECT_NE(out.grad_fn, nullptr);
+}
+
+TEST_F(LinearTest, BackwardRuns) {
+    Tensor out = linear.forward(x);
+    Tensor loss = ops::sum(out);
+    // Should not throw
+    EXPECT_NO_THROW(loss.backward());
+}
+
+TEST_F(LinearTest, WeightGradShapeAfterBackward) {
+    Tensor out = linear.forward(x);
+    Tensor loss = ops::sum(out);
+    loss.backward();
+    // weight grad should have same shape as weight
+    EXPECT_NE(linear.parameters()[0].grad, nullptr);
+    EXPECT_EQ(linear.parameters()[0].grad->shape(), (std::vector<size_t>{8, 4}));
+}
+
+TEST_F(LinearTest, ZeroGradClearsGrad) {
+    Tensor out = linear.forward(x);
+    Tensor loss = ops::sum(out);
+    loss.backward();
+    linear.zero_grad();
+    for (auto &p : linear.parameters()) {
+        EXPECT_EQ(p.grad, nullptr);
+    }
 }
