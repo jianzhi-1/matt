@@ -75,3 +75,27 @@ TEST_F(OpsTest, MatmulIdentity) {
         }
     }
 }
+
+// ── ReLU ──────────────────────────────────────────────────────────────────────
+TEST_F(OpsTest, ReluZerosOutNegatives) {
+    auto t = Tensor::from_data({-2, -1, 0, 1, 2, 3}, {2, 3});
+    auto r = ops::relu(t);
+    EXPECT_FLOAT_EQ(r.at({0, 0}), 0.0f); // was -2
+    EXPECT_FLOAT_EQ(r.at({0, 1}), 0.0f); // was -1
+    EXPECT_FLOAT_EQ(r.at({0, 2}), 0.0f); // was  0
+    EXPECT_FLOAT_EQ(r.at({1, 0}), 1.0f);
+    EXPECT_FLOAT_EQ(r.at({1, 1}), 2.0f);
+    EXPECT_FLOAT_EQ(r.at({1, 2}), 3.0f);
+}
+
+// ── Sum ───────────────────────────────────────────────────────────────────────
+TEST_F(OpsTest, SumAllElements) {
+    auto t = Tensor::from_data({1, 2, 3, 4}, {2, 2});
+    auto s = ops::sum(t);
+    EXPECT_EQ(s.numel(), 1);
+    EXPECT_FLOAT_EQ(s.data_ptr()[0], 10.0f);
+}
+
+TEST_F(OpsTest, SumOfZeros) {
+    EXPECT_FLOAT_EQ(ops::sum(Tensor::zeros({5, 5})).data_ptr()[0], 0.0f);
+}
