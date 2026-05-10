@@ -38,6 +38,13 @@ public:
     const char* name() const override { return "AddBackward"; }
 };
 
+class SubBackward: public BinaryGradFn {
+public:
+    using BinaryGradFn::BinaryGradFn;
+    std::vector<Tensor> backward(const Tensor& grad_out) const override;
+    const char* name() const override { return "SubBackward"; }
+};
+
 class MulBackward : public BinaryGradFn {
 public:
     using BinaryGradFn::BinaryGradFn;

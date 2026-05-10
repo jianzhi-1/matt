@@ -83,6 +83,10 @@ Tensor add(const Tensor &a, const Tensor &b) {
     return apply_binary<AddOp>(a, b);
 }
 
+Tensor sub(const Tensor &a, const Tensor &b) {
+    return apply_binary<SubOp>(a, b);
+}
+
 Tensor mul(const Tensor &a, const Tensor &b) {
     return apply_binary<MulOp>(a, b);
 }
@@ -101,6 +105,10 @@ Tensor sum(const Tensor &a) {
 
 Tensor AddOp::forward(const Tensor &a, const Tensor &b) {
     return ops::elementwise(a, b, [](float x, float y) { return x + y; });
+}
+
+Tensor SubOp::forward(const Tensor &a, const Tensor &b) {
+    return ops::elementwise(a, b, [](float x, float y) { return x - y; });
 }
 
 Tensor MulOp::forward(const Tensor &a, const Tensor &b) {

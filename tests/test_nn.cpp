@@ -1,10 +1,15 @@
+#include "matt/nn/activations/relu.hpp"
 #include "matt/nn/linear.hpp"
+#include "matt/nn/loss.hpp"
+#include "matt/nn/sequential.hpp"
 #include "matt/ops.hpp"
+#include "matt/optim/sgd.hpp"
 #include "matt/tensor.hpp"
 #include <gtest/gtest.h>
 
 using namespace matt;
 using namespace matt::nn;
+using namespace matt::optim;
 
 class LinearTest : public ::testing::Test {
   protected:
@@ -114,4 +119,29 @@ TEST_F(LinearTest, ZeroGradClearsGrad) {
     for (auto &p : linear.parameters()) {
         EXPECT_EQ(p.data()->grad, nullptr);
     }
+}
+
+// -- E2E --
+TEST(E2ETest, MLPLossDecreasesOverSteps) {
+    auto net = std::make_shared<Sequential>(
+        std::make_shared<Linear>(2, 4), std::make_shared<ReLU>(), std::make_shared<Linear>(4, 1));
+
+    SGD optimizer(net->parameters(), 0.01f);
+    MSELoss criterion;
+
+    Tensor x = Tensor::from_data({1.f, 2.f}, {1, 2});
+    Tensor target = Tensor::from_data({0.5f}, {1, 1});
+
+    float first_loss, last_loss;
+    for (int i = 0; i < 10; i++) {
+        Tensor pred = net->forward(x);
+        Tensor loss = criterion.forward(pred, target);
+        if (i == 0)
+            first_loss = loss.at({0});
+        last_loss = loss.at({0});
+        loss.backward();
+        optimizer.step();
+        optimizer.zero_grad();
+    }
+    EXPECT_LT(last_loss, first_loss);
 }

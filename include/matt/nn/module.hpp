@@ -54,7 +54,8 @@ std::shared_ptr<T> Module::register_module(
 ){
     if (submodules_.count(name)) throw std::runtime_error("nn:register_module: already registered submodule with name");
     submodule_names_.push_back(name);
-    return submodules_[name] = m;
+    submodules_[name] = m;
+    return m; // NOTE: can't just return submodules_[name], as it is of type shared_ptr<Module>
 }
 
 }

@@ -29,6 +29,11 @@ public:
     static Tensor forward(const Tensor& a, const Tensor& b);
 };
 
+class SubOp: public BinaryOp<AddBackward>{
+public:
+    static Tensor forward(const Tensor& a, const Tensor& b);
+};
+
 class MulOp: public BinaryOp<MulBackward>{
 public:
     static Tensor forward(const Tensor& a, const Tensor& b);
@@ -51,6 +56,7 @@ public:
 
 
 Tensor add(const Tensor& a, const Tensor& b);
+Tensor sub(const Tensor& a, const Tensor& b);
 Tensor mul(const Tensor& a, const Tensor& b);
 Tensor matmul(const Tensor& a, const Tensor& b);
 Tensor relu(const Tensor& a);
