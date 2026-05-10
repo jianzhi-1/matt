@@ -37,4 +37,11 @@ std::vector<Tensor> SumBackward::backward(const Tensor &grad_out) const {
     return {Tensor::fill(a_.get()->shape(), scale)};
 }
 
+TransposeBackward::TransposeBackward(Tensor a, size_t dim0, size_t dim1)
+    : UnaryGradFn(a), dim0_(dim0), dim1_(dim1) {}
+
+std::vector<Tensor> TransposeBackward::backward(const Tensor &grad_out) const {
+    return {grad_out.transpose(dim0_, dim1_)};
+}
+
 } // namespace matt
