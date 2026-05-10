@@ -1,4 +1,5 @@
 #include "matt/tensor.hpp"
+#include "matt/grad_fn.hpp"
 #include "matt/ops.hpp"
 #include "matt/shape_utils.hpp"
 #include "matt/storage.hpp"
@@ -200,7 +201,13 @@ Tensor Tensor::transpose(size_t dim0, size_t dim1) const {
     auto new_strides = data_->strides_;
     std::swap(new_shape[dim0], new_shape[dim1]);
     std::swap(new_strides[dim0], new_strides[dim1]);
-    return Tensor(data_->storage_, new_shape, new_strides, data_->offset_, data_->requires_grad_);
+    Tensor out(data_->storage_, new_shape, new_strides, data_->offset_, data_->requires_grad_);
+    // NOTE: treat transpose as an operation, so that gradients backpropagate correctly.
+    if (data_->requires_grad_) {
+        out.data()->grad_fn = std::make_shared<TransposeBackward>(*this, dim0, dim1);
+        out.data()->grad_fn->inputs = {data_};
+    }
+    return out;
 }
 
 void Tensor::backward() {

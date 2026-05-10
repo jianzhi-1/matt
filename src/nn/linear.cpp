@@ -5,10 +5,12 @@ namespace nn {
 Linear::Linear(size_t input_dim, size_t output_dim, bool use_bias)
     : input_dim_(input_dim), output_dim_(output_dim), use_bias_(use_bias) {
     weight_ = Tensor::zeros({output_dim, input_dim});
+    weight_.set_requires_grad(true);
     register_parameter("weight", weight_);
 
     if (use_bias) {
         bias_ = Tensor::zeros({output_dim});
+        bias_.set_requires_grad(true);
         register_parameter("bias", bias_);
     }
 }

@@ -33,7 +33,7 @@ std::vector<Tensor> Module::parameters() const {
 
 void Module::zero_grad() {
     for (const auto &pname : parameter_names_) {
-        parameters_.at(pname).grad = nullptr;
+        parameters_.at(pname).data()->grad = nullptr;
     }
     for (const auto &submodule_name : submodule_names_) {
         submodules_.at(submodule_name)->zero_grad();

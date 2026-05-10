@@ -87,7 +87,7 @@ TEST_F(LinearTest, ForwardOutputHasGradFn) {
     // Output of a linear layer applied to a non-grad input still has a grad_fn
     // because the parameters require grad.
     Tensor out = linear.forward(x);
-    EXPECT_NE(out.grad_fn, nullptr);
+    EXPECT_NE(out.data()->grad_fn, nullptr);
 }
 
 TEST_F(LinearTest, BackwardRuns) {
@@ -102,8 +102,8 @@ TEST_F(LinearTest, WeightGradShapeAfterBackward) {
     Tensor loss = ops::sum(out);
     loss.backward();
     // weight grad should have same shape as weight
-    EXPECT_NE(linear.parameters()[0].grad, nullptr);
-    EXPECT_EQ(linear.parameters()[0].grad->shape(), (std::vector<size_t>{8, 4}));
+    EXPECT_NE(linear.parameters()[0].data()->grad, nullptr);
+    EXPECT_EQ(linear.parameters()[0].data()->grad->shape(), (std::vector<size_t>{8, 4}));
 }
 
 TEST_F(LinearTest, ZeroGradClearsGrad) {
@@ -112,6 +112,6 @@ TEST_F(LinearTest, ZeroGradClearsGrad) {
     loss.backward();
     linear.zero_grad();
     for (auto &p : linear.parameters()) {
-        EXPECT_EQ(p.grad, nullptr);
+        EXPECT_EQ(p.data()->grad, nullptr);
     }
 }

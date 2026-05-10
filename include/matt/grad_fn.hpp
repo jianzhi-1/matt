@@ -66,5 +66,13 @@ public:
     const char* name() const override { return "SumBackward"; }
 };
 
+class TransposeBackward : public UnaryGradFn {
+public:
+    TransposeBackward(Tensor a, size_t dim0, size_t dim1);
+    std::vector<Tensor> backward(const Tensor& grad_out) const override;
+    const char* name() const override { return "TransposeBackward"; }
+private:
+    size_t dim0_, dim1_;
+};
 
 }
