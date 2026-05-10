@@ -1,0 +1,28 @@
+var classmatt_1_1Tensor =
+[
+    [ "Tensor", "classmatt_1_1Tensor.html#af31664dee08487d4a19b0e0a29de57a4", null ],
+    [ "Tensor", "classmatt_1_1Tensor.html#a35e71168f9c2bed6c72f6c95709dfa57", null ],
+    [ "Tensor", "classmatt_1_1Tensor.html#a98b1bed1801fb0e35372e2c2b5d724db", null ],
+    [ "at", "classmatt_1_1Tensor.html#ab2786fbdde3b49265c3abaf6dead47ee", null ],
+    [ "at", "classmatt_1_1Tensor.html#a6b486224648491a73d18991f0bf8b242", null ],
+    [ "backward", "classmatt_1_1Tensor.html#a45b03407e58c658a17d79ae42b5ce1da", null ],
+    [ "broadcast_to", "classmatt_1_1Tensor.html#ab50c96fb9d05b0c4c7bf3241d46d3662", null ],
+    [ "contiguous", "classmatt_1_1Tensor.html#a0f46086d0040b398106b73f40dcd79aa", null ],
+    [ "data", "classmatt_1_1Tensor.html#ae57f2c9fa98db8f14c24f6b31736b526", null ],
+    [ "data_ptr", "classmatt_1_1Tensor.html#a95b06ec3974bc900c545d557413d579e", null ],
+    [ "data_ptr", "classmatt_1_1Tensor.html#a3aa0f9a4766a1d1602bf7c2a392dabbb", null ],
+    [ "expand", "classmatt_1_1Tensor.html#a1c101eaae231eeb9bcbc550d3e4050ef", null ],
+    [ "is_contiguous", "classmatt_1_1Tensor.html#a111d598f50d7cb49e2acfb6246e94ff5", null ],
+    [ "ndim", "classmatt_1_1Tensor.html#a6c99324b2014187a86de160fb64aaef7", null ],
+    [ "numel", "classmatt_1_1Tensor.html#a6738a32dd2524bae10ea51b0d11678eb", null ],
+    [ "offset", "classmatt_1_1Tensor.html#a8d8a6b714290de64793c770d82d472dc", null ],
+    [ "print", "classmatt_1_1Tensor.html#ad575a8c99c02bffd315706c041fc846d", null ],
+    [ "requires_grad", "classmatt_1_1Tensor.html#aaf5e9871bcdf984dfa05dc775499f809", null ],
+    [ "reshape", "classmatt_1_1Tensor.html#ad5e8e252ca227e267dcb42a59f49e048", null ],
+    [ "set_requires_grad", "classmatt_1_1Tensor.html#a467bbe4da564d938483dd4ea6c440739", null ],
+    [ "shape", "classmatt_1_1Tensor.html#aaf466a297499b5543f171f0f8817e95c", null ],
+    [ "shape_str", "classmatt_1_1Tensor.html#a868f1d3233738d69c86af5dd4e1aaaa2", null ],
+    [ "slice", "classmatt_1_1Tensor.html#ab28e3e1a6af45c8a47e729fc2dafd1b0", null ],
+    [ "strides", "classmatt_1_1Tensor.html#a380cfcbbf9a0cb6d2b8b0572a954f0c3", null ],
+    [ "transpose", "classmatt_1_1Tensor.html#ad3076339695369f0a3bdef071e3a80ff", null ]
+];
