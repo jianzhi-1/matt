@@ -3,9 +3,9 @@ var indexSectionsWithContent =
   0: "abcdefgilmnoprstuz~",
   1: "abglmorstu",
   2: "m",
-  3: "glmost",
+  3: "glmorst",
   4: "abcdefilmnoprstuz~",
-  5: "abgi",
+  5: "abgilp",
   6: "t"
 };
 

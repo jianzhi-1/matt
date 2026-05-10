@@ -6,6 +6,7 @@ var namespacematt_1_1ops =
     [ "MulOp", "classmatt_1_1ops_1_1MulOp.html", null ],
     [ "Op", "classmatt_1_1ops_1_1Op.html", null ],
     [ "ReluOp", "classmatt_1_1ops_1_1ReluOp.html", null ],
+    [ "SubOp", "classmatt_1_1ops_1_1SubOp.html", null ],
     [ "SumOp", "classmatt_1_1ops_1_1SumOp.html", null ],
     [ "UnaryOp", "classmatt_1_1ops_1_1UnaryOp.html", null ],
     [ "accumulate", "namespacematt_1_1ops.html#a2fb931e10f3add540217b4c14c28a5e4", null ],
@@ -18,5 +19,6 @@ var namespacematt_1_1ops =
     [ "mul", "namespacematt_1_1ops.html#a08dabd5b2d57330a951a78b12d047b71", null ],
     [ "relu", "namespacematt_1_1ops.html#a7e5fb42a34013c3b2a0257ecc8e121bc", null ],
     [ "softmax", "namespacematt_1_1ops.html#aef852210ff0500e7cebb2a46fbdf3b43", null ],
+    [ "sub", "namespacematt_1_1ops.html#af6030ec2b866e29a69ab9373cfbf6e36", null ],
     [ "sum", "namespacematt_1_1ops.html#a80012db7ba08ab5a180683e051bc965d", null ]
 ];

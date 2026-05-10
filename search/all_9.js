@@ -1,17 +1,19 @@
 var searchData=
 [
-  ['make_5fgrad_5ffn_0',['make_grad_fn',['../classmatt_1_1ops_1_1BinaryOp.html#a6b5cfec00a5e88299303215726417ec9',1,'matt::ops::BinaryOp::make_grad_fn()'],['../classmatt_1_1ops_1_1UnaryOp.html#ae25644fda90c835f475d7b605eb3c267',1,'matt::ops::UnaryOp::make_grad_fn()']]],
+  ['make_5fgrad_5ffn_0',['make_grad_fn',['../classmatt_1_1ops_1_1UnaryOp.html#ae25644fda90c835f475d7b605eb3c267',1,'matt::ops::UnaryOp::make_grad_fn()'],['../classmatt_1_1ops_1_1BinaryOp.html#a6b5cfec00a5e88299303215726417ec9',1,'matt::ops::BinaryOp::make_grad_fn()']]],
   ['matmul_1',['matmul',['../namespacematt_1_1ops.html#a0a5e0ae33aa8bcc34a002aff8d874f76',1,'matt::ops']]],
   ['matmulbackward_2',['MatmulBackward',['../classmatt_1_1MatmulBackward.html',1,'matt']]],
   ['matmulop_3',['MatmulOp',['../classmatt_1_1ops_1_1MatmulOp.html',1,'matt::ops']]],
   ['matt_4',['matt',['../namespacematt.html',1,'']]],
   ['matt_3a_3ann_5',['nn',['../namespacematt_1_1nn.html',1,'matt']]],
   ['matt_3a_3aops_6',['ops',['../namespacematt_1_1ops.html',1,'matt']]],
-  ['matt_3a_3ashape_5futils_7',['shape_utils',['../namespacematt_1_1shape__utils.html',1,'matt']]],
-  ['module_8',['Module',['../classmatt_1_1nn_1_1Module.html',1,'matt::nn']]],
-  ['module_2ecpp_9',['module.cpp',['../module_8cpp.html',1,'']]],
-  ['module_2ehpp_10',['module.hpp',['../module_8hpp.html',1,'']]],
-  ['mul_11',['mul',['../namespacematt_1_1ops.html#a08dabd5b2d57330a951a78b12d047b71',1,'matt::ops']]],
-  ['mulbackward_12',['MulBackward',['../classmatt_1_1MulBackward.html',1,'matt']]],
-  ['mulop_13',['MulOp',['../classmatt_1_1ops_1_1MulOp.html',1,'matt::ops']]]
+  ['matt_3a_3aoptim_7',['optim',['../namespacematt_1_1optim.html',1,'matt']]],
+  ['matt_3a_3ashape_5futils_8',['shape_utils',['../namespacematt_1_1shape__utils.html',1,'matt']]],
+  ['module_9',['Module',['../classmatt_1_1nn_1_1Module.html',1,'matt::nn']]],
+  ['module_2ecpp_10',['module.cpp',['../module_8cpp.html',1,'']]],
+  ['module_2ehpp_11',['module.hpp',['../module_8hpp.html',1,'']]],
+  ['mseloss_12',['MSELoss',['../classmatt_1_1nn_1_1MSELoss.html',1,'matt::nn']]],
+  ['mul_13',['mul',['../namespacematt_1_1ops.html#a08dabd5b2d57330a951a78b12d047b71',1,'matt::ops']]],
+  ['mulbackward_14',['MulBackward',['../classmatt_1_1MulBackward.html',1,'matt']]],
+  ['mulop_15',['MulOp',['../classmatt_1_1ops_1_1MulOp.html',1,'matt::ops']]]
 ];

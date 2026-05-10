@@ -110,6 +110,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmatt_1_1ops_1_1ReluOp.html">ReluOp</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmatt_1_1ops_1_1SubOp.html">SubOp</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmatt_1_1ops_1_1SumOp.html">SumOp</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmatt_1_1ops_1_1UnaryOp.html">UnaryOp</a></td></tr>
@@ -131,6 +133,8 @@ Functions</h2></td></tr>
 <tr class="separator:ad7b859586580e33542adb52786109980"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15cf36a2131f8863c5e2ab65af613287" id="r_a15cf36a2131f8863c5e2ab65af613287"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmatt_1_1Tensor.html">Tensor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacematt_1_1ops.html#a15cf36a2131f8863c5e2ab65af613287">add</a> (const <a class="el" href="classmatt_1_1Tensor.html">Tensor</a> &amp;a, const <a class="el" href="classmatt_1_1Tensor.html">Tensor</a> &amp;b)</td></tr>
 <tr class="separator:a15cf36a2131f8863c5e2ab65af613287"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6030ec2b866e29a69ab9373cfbf6e36" id="r_af6030ec2b866e29a69ab9373cfbf6e36"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmatt_1_1Tensor.html">Tensor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacematt_1_1ops.html#af6030ec2b866e29a69ab9373cfbf6e36">sub</a> (const <a class="el" href="classmatt_1_1Tensor.html">Tensor</a> &amp;a, const <a class="el" href="classmatt_1_1Tensor.html">Tensor</a> &amp;b)</td></tr>
+<tr class="separator:af6030ec2b866e29a69ab9373cfbf6e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08dabd5b2d57330a951a78b12d047b71" id="r_a08dabd5b2d57330a951a78b12d047b71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmatt_1_1Tensor.html">Tensor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacematt_1_1ops.html#a08dabd5b2d57330a951a78b12d047b71">mul</a> (const <a class="el" href="classmatt_1_1Tensor.html">Tensor</a> &amp;a, const <a class="el" href="classmatt_1_1Tensor.html">Tensor</a> &amp;b)</td></tr>
 <tr class="separator:a08dabd5b2d57330a951a78b12d047b71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a5e0ae33aa8bcc34a002aff8d874f76" id="r_a0a5e0ae33aa8bcc34a002aff8d874f76"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmatt_1_1Tensor.html">Tensor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacematt_1_1ops.html#a0a5e0ae33aa8bcc34a002aff8d874f76">matmul</a> (const <a class="el" href="classmatt_1_1Tensor.html">Tensor</a> &amp;a, const <a class="el" href="classmatt_1_1Tensor.html">Tensor</a> &amp;b)</td></tr>
@@ -402,6 +406,34 @@ template&lt;typename <a class="el" href="classmatt_1_1ops_1_1Op.html">Op</a> &gt
           <td></td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>dim</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af6030ec2b866e29a69ab9373cfbf6e36" name="af6030ec2b866e29a69ab9373cfbf6e36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6030ec2b866e29a69ab9373cfbf6e36">&#9670;&#160;</a></span>sub()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmatt_1_1Tensor.html">Tensor</a> matt::ops::sub </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classmatt_1_1Tensor.html">Tensor</a> &amp;&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classmatt_1_1Tensor.html">Tensor</a> &amp;&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

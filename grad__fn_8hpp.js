@@ -4,6 +4,7 @@ var grad__fn_8hpp =
     [ "matt::BinaryGradFn", "classmatt_1_1BinaryGradFn.html", "classmatt_1_1BinaryGradFn" ],
     [ "matt::UnaryGradFn", "classmatt_1_1UnaryGradFn.html", "classmatt_1_1UnaryGradFn" ],
     [ "matt::AddBackward", "classmatt_1_1AddBackward.html", "classmatt_1_1AddBackward" ],
+    [ "matt::SubBackward", "classmatt_1_1SubBackward.html", "classmatt_1_1SubBackward" ],
     [ "matt::MulBackward", "classmatt_1_1MulBackward.html", "classmatt_1_1MulBackward" ],
     [ "matt::MatmulBackward", "classmatt_1_1MatmulBackward.html", "classmatt_1_1MatmulBackward" ],
     [ "matt::ReluBackward", "classmatt_1_1ReluBackward.html", "classmatt_1_1ReluBackward" ],

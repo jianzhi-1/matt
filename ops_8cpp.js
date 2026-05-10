@@ -9,5 +9,6 @@ var ops_8cpp =
     [ "matmul", "ops_8cpp.html#a0a5e0ae33aa8bcc34a002aff8d874f76", null ],
     [ "mul", "ops_8cpp.html#a08dabd5b2d57330a951a78b12d047b71", null ],
     [ "relu", "ops_8cpp.html#a7e5fb42a34013c3b2a0257ecc8e121bc", null ],
+    [ "sub", "ops_8cpp.html#af6030ec2b866e29a69ab9373cfbf6e36", null ],
     [ "sum", "ops_8cpp.html#a80012db7ba08ab5a180683e051bc965d", null ]
 ];

@@ -3,7 +3,10 @@ var annotated_dup =
     [ "matt", "namespacematt.html", [
       [ "nn", "namespacematt_1_1nn.html", [
         [ "Linear", "classmatt_1_1nn_1_1Linear.html", "classmatt_1_1nn_1_1Linear" ],
-        [ "Module", "classmatt_1_1nn_1_1Module.html", "classmatt_1_1nn_1_1Module" ]
+        [ "Module", "classmatt_1_1nn_1_1Module.html", "classmatt_1_1nn_1_1Module" ],
+        [ "MSELoss", "classmatt_1_1nn_1_1MSELoss.html", "classmatt_1_1nn_1_1MSELoss" ],
+        [ "ReLU", "classmatt_1_1nn_1_1ReLU.html", "classmatt_1_1nn_1_1ReLU" ],
+        [ "Sequential", "classmatt_1_1nn_1_1Sequential.html", "classmatt_1_1nn_1_1Sequential" ]
       ] ],
       [ "ops", "namespacematt_1_1ops.html", [
         [ "AddOp", "classmatt_1_1ops_1_1AddOp.html", null ],
@@ -12,8 +15,13 @@ var annotated_dup =
         [ "MulOp", "classmatt_1_1ops_1_1MulOp.html", null ],
         [ "Op", "classmatt_1_1ops_1_1Op.html", null ],
         [ "ReluOp", "classmatt_1_1ops_1_1ReluOp.html", null ],
+        [ "SubOp", "classmatt_1_1ops_1_1SubOp.html", null ],
         [ "SumOp", "classmatt_1_1ops_1_1SumOp.html", null ],
         [ "UnaryOp", "classmatt_1_1ops_1_1UnaryOp.html", null ]
+      ] ],
+      [ "optim", "namespacematt_1_1optim.html", [
+        [ "Optimizer", "classmatt_1_1optim_1_1Optimizer.html", "classmatt_1_1optim_1_1Optimizer" ],
+        [ "SGD", "classmatt_1_1optim_1_1SGD.html", "classmatt_1_1optim_1_1SGD" ]
       ] ],
       [ "AddBackward", "classmatt_1_1AddBackward.html", "classmatt_1_1AddBackward" ],
       [ "BinaryGradFn", "classmatt_1_1BinaryGradFn.html", "classmatt_1_1BinaryGradFn" ],
@@ -22,6 +30,7 @@ var annotated_dup =
       [ "MulBackward", "classmatt_1_1MulBackward.html", "classmatt_1_1MulBackward" ],
       [ "ReluBackward", "classmatt_1_1ReluBackward.html", "classmatt_1_1ReluBackward" ],
       [ "Storage", "classmatt_1_1Storage.html", "classmatt_1_1Storage" ],
+      [ "SubBackward", "classmatt_1_1SubBackward.html", "classmatt_1_1SubBackward" ],
       [ "SumBackward", "classmatt_1_1SumBackward.html", "classmatt_1_1SumBackward" ],
       [ "Tensor", "classmatt_1_1Tensor.html", "classmatt_1_1Tensor" ],
       [ "TensorData", "classmatt_1_1TensorData.html", "classmatt_1_1TensorData" ],

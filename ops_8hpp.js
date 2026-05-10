@@ -4,6 +4,7 @@ var ops_8hpp =
     [ "matt::ops::BinaryOp< GradFnType >", "classmatt_1_1ops_1_1BinaryOp.html", null ],
     [ "matt::ops::UnaryOp< GradFnType >", "classmatt_1_1ops_1_1UnaryOp.html", null ],
     [ "matt::ops::AddOp", "classmatt_1_1ops_1_1AddOp.html", null ],
+    [ "matt::ops::SubOp", "classmatt_1_1ops_1_1SubOp.html", null ],
     [ "matt::ops::MulOp", "classmatt_1_1ops_1_1MulOp.html", null ],
     [ "matt::ops::MatmulOp", "classmatt_1_1ops_1_1MatmulOp.html", null ],
     [ "matt::ops::ReluOp", "classmatt_1_1ops_1_1ReluOp.html", null ],
@@ -16,5 +17,6 @@ var ops_8hpp =
     [ "mul", "ops_8hpp.html#a08dabd5b2d57330a951a78b12d047b71", null ],
     [ "relu", "ops_8hpp.html#a7e5fb42a34013c3b2a0257ecc8e121bc", null ],
     [ "softmax", "ops_8hpp.html#aef852210ff0500e7cebb2a46fbdf3b43", null ],
+    [ "sub", "ops_8hpp.html#af6030ec2b866e29a69ab9373cfbf6e36", null ],
     [ "sum", "ops_8hpp.html#a80012db7ba08ab5a180683e051bc965d", null ]
 ];

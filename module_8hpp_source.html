@@ -156,13 +156,14 @@ $(document).ready(function(){initNavTree('module_8hpp_source.html',''); initResi
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>){</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordflow">if</span> (submodules_.count(<a class="code hl_function" href="classmatt_1_1nn_1_1Module.html#a4c24dd093985452979cb0b5db85dd735">name</a>)) <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;nn:register_module: already registered submodule with name&quot;</span>);</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    submodule_names_.push_back(<a class="code hl_function" href="classmatt_1_1nn_1_1Module.html#a4c24dd093985452979cb0b5db85dd735">name</a>);</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordflow">return</span> submodules_[<a class="code hl_function" href="classmatt_1_1nn_1_1Module.html#a4c24dd093985452979cb0b5db85dd735">name</a>] = m;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>}</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    submodules_[<a class="code hl_function" href="classmatt_1_1nn_1_1Module.html#a4c24dd093985452979cb0b5db85dd735">name</a>] = m;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordflow">return</span> m; <span class="comment">// NOTE: can&#39;t just return submodules_[name], as it is of type shared_ptr&lt;Module&gt;</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>}</div>
 </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>}</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>}</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
 <div class="ttc" id="aclassmatt_1_1Tensor_html"><div class="ttname"><a href="classmatt_1_1Tensor.html">matt::Tensor</a></div><div class="ttdef"><b>Definition</b> tensor.hpp:29</div></div>
 <div class="ttc" id="aclassmatt_1_1nn_1_1Module_html"><div class="ttname"><a href="classmatt_1_1nn_1_1Module.html">matt::nn::Module</a></div><div class="ttdef"><b>Definition</b> module.hpp:13</div></div>
 <div class="ttc" id="aclassmatt_1_1nn_1_1Module_html_a0eb4135235ce854d389ab4abc53ad352"><div class="ttname"><a href="classmatt_1_1nn_1_1Module.html#a0eb4135235ce854d389ab4abc53ad352">matt::nn::Module::train</a></div><div class="ttdeci">void train(bool mode)</div><div class="ttdef"><b>Definition</b> module.cpp:43</div></div>
