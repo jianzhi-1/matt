@@ -12,8 +12,6 @@
 #include <vector>
 
 namespace matt {
-Storage::Storage(size_t size) : data_(size, 0.f) {}
-Storage::Storage(size_t size, float fill_value) : data_(size, fill_value) {}
 
 Tensor::Tensor(std::shared_ptr<Storage> storage, std::vector<size_t> shape,
                std::vector<size_t> strides, size_t offset, bool requires_grad)
@@ -25,9 +23,10 @@ Tensor::Tensor(std::shared_ptr<Storage> storage, std::vector<size_t> shape,
     data_->requires_grad_ = requires_grad;
 }
 
-Tensor Tensor::fill(const std::vector<size_t> &shape, float val) {
+Tensor Tensor::fill(const std::vector<size_t> &shape, float val, Device device) {
     size_t cumulative_size = shape_utils::numel_of(shape);
-    auto storage = std::make_shared<Storage>(cumulative_size, val);
+    auto storage = std::make_shared<Storage>(cumulative_size, device);
+    get_backend(device)->fill(storage->data(), val, cumulative_size);
     return Tensor(storage, shape, get_default_strides(shape));
 }
 
@@ -261,6 +260,10 @@ bool allclose(const Tensor &a, const Tensor &b, float tol) {
     auto out = ops::accumulate(imm, [](float x, float y) { return x + y; });
     // TODO: please use a better way.
     return out.at({0}) < 0.5;
+}
+
+Device Tensor::device() const {
+    return data_->storage_->device();
 }
 
 } // namespace matt

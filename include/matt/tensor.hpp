@@ -1,6 +1,7 @@
 #pragma once
 #include "storage.hpp"
 #include "grad_fn.hpp"
+#include "device.hpp"
 #include <vector>
 #include <memory>
 #include <functional>
@@ -39,12 +40,12 @@ namespace matt {
         );
         explicit Tensor(std::shared_ptr<TensorData> data): data_(std::move(data)){};
 
-        static Tensor zeros(std::vector<size_t> shape);
-        static Tensor ones(std::vector<size_t> shape);
-        static Tensor from_data(const std::vector<float>& data, std::vector<size_t> shape);
-        static Tensor arange(float start, float stop, float step = 1.f);
-
-        static Tensor fill(const std::vector<size_t>& shape, float val);
+        // Factory methods
+        static Tensor zeros(std::vector<size_t> shape, Device device = Device::cpu());
+        static Tensor ones(std::vector<size_t> shape, Device device = Device::cpu());
+        static Tensor from_data(const std::vector<float>& data, std::vector<size_t> shape, Device device = Device::cpu());
+        static Tensor arange(float start, float stop, float step = 1.f, Device device = Device::cpu());
+        static Tensor fill(const std::vector<size_t>& shape, float val, Device device = Device::cpu());
 
         const std::vector<size_t>& shape() const { return data_->shape_; }
         const std::vector<size_t>& strides() const { return data_->strides_; }
@@ -74,6 +75,8 @@ namespace matt {
         std::string shape_str() const;
         void backward();
         std::shared_ptr<TensorData> data() const { return data_; }
+
+        Device device() const;
 
     private:
         std::shared_ptr<TensorData> data_;
