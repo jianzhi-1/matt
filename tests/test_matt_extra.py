@@ -1,15 +1,3 @@
-"""
-Seeded, numerically-verified tests for the matt C++ tensor library.
- 
-Strategy
---------
-Because matt doesn't expose an RNG seed, we use NumPy (seeded) to generate
-known data, feed it into matt via Tensor.from_data, and assert results against
-NumPy reference calculations with a tight tolerance.
- 
-All tolerances use 1e-4 (float32 accumulation drift on matmul / MSE).
-"""
- 
 import sys
 sys.path.insert(0, 'build')
  
@@ -20,7 +8,9 @@ import matt
  
 RNG = np.random.default_rng(42)
 TOL = 1e-4
- 
+
+Normal = matt.nn.weight_initializer.Normal
+KaimingUniform = matt.nn.weight_initializer.KaimingUniform
  
 # ── helpers ───────────────────────────────────────────────────────────────────
  
@@ -243,21 +233,21 @@ class TestLinearNumerics:
     """
  
     def test_forward_deterministic(self):
-        linear = matt.nn.Linear(4, 6)
+        linear = matt.nn.Linear(4, 6, Normal(0, 0.1, 42))
         x = tensor_from_np(RNG.uniform(-1, 1, size=(3, 4)).astype(np.float32))
         o1 = read_2d(linear.forward(x), 3, 6)
         o2 = read_2d(linear.forward(x), 3, 6)
         np.testing.assert_allclose(o1, o2, atol=TOL)
  
     def test_forward_no_bias_shape(self):
-        linear = matt.nn.Linear(5, 3, False)
+        linear = matt.nn.Linear(5, 3, KaimingUniform(42), False)
         x = tensor_from_np(RNG.uniform(-1, 1, size=(2, 5)).astype(np.float32))
         out = linear.forward(x)
         assert out.shape() == [2, 3]
  
     def test_batch_size_1_vs_n(self):
         """Output rows are independent: batch of 1 == single row of batch of N."""
-        linear = matt.nn.Linear(4, 3)
+        linear = matt.nn.Linear(4, 3, Normal(0, 0.1, 42))
         data = RNG.uniform(-1, 1, size=(4, 4)).astype(np.float32)
         batch_out = read_2d(linear.forward(tensor_from_np(data)), 4, 3)
         for i in range(4):
@@ -308,7 +298,7 @@ class TestGradients:
         # checking a subsequent SGD step changes the parameter.
  
     def test_sgd_step_changes_weights(self):
-        linear = matt.nn.Linear(3, 2)
+        linear = matt.nn.Linear(3, 2, Normal(0, 0.1, 42))
         x = tensor_from_np(RNG.uniform(-1, 1, size=(2, 3)).astype(np.float32))
         before = read_2d(linear.forward(x), 2, 2).copy()
         out = linear.forward(x)
@@ -322,7 +312,7 @@ class TestGradients:
  
     def test_zero_grad_clears(self):
         """zero_grad followed by step should be a no-op (grads zeroed, no update)."""
-        linear = matt.nn.Linear(3, 2)
+        linear = matt.nn.Linear(3, 2, Normal(0, 0.1, 42))
         optim = matt.optim.SGD(linear.parameters(), 0.1)
         x = tensor_from_np(RNG.uniform(-1, 1, size=(2, 3)).astype(np.float32))
         out = linear.forward(x)
@@ -357,9 +347,9 @@ class TestConvergence:
     def test_loss_strictly_decreasing_trend(self):
         """Mean loss of last 20 steps < mean loss of first 20 steps."""
         net = matt.nn.Sequential()
-        net.add(matt.nn.Linear(3, 8))
+        net.add(matt.nn.Linear(3, 8, Normal(0, 0.1, 42)))
         net.add(matt.nn.ReLU())
-        net.add(matt.nn.Linear(8, 1))
+        net.add(matt.nn.Linear(8, 1, Normal(0, 0.1, 42)))
         x_np = RNG.uniform(-1, 1, size=(4, 3)).astype(np.float32)
         y_np = RNG.uniform(-1, 1, size=(4, 1)).astype(np.float32)
         losses = self._train(net, x_np, y_np, lr=0.01, steps=300)
@@ -374,8 +364,8 @@ class TestConvergence:
         2 samples. Final MSE < 0.05 after sufficient steps.
         """
         net = matt.nn.Sequential()
-        net.add(matt.nn.Linear(2, 16))
-        net.add(matt.nn.Linear(16, 1))
+        net.add(matt.nn.Linear(2, 16, Normal(0, 0.1, 42)))
+        net.add(matt.nn.Linear(16, 1, Normal(0, 0.1, 42)))
         x_np = np.array([[1.0, 0.0], [0.0, 1.0]], dtype=np.float32)
         y_np = np.array([[1.0], [-1.0]], dtype=np.float32)
         losses = self._train(net, x_np, y_np, lr=0.05, steps=500)
@@ -390,9 +380,9 @@ class TestConvergence:
         """
         def make_net():
             n = matt.nn.Sequential()
-            n.add(matt.nn.Linear(2, 8))
+            n.add(matt.nn.Linear(2, 8, Normal(0, 0.1, 42)))
             n.add(matt.nn.ReLU())
-            n.add(matt.nn.Linear(8, 1))
+            n.add(matt.nn.Linear(8, 1, Normal(0, 0.1, 42)))
             return n
  
         x_np = np.array([[1.0, 2.0], [0.5, -1.0]], dtype=np.float32)
@@ -408,9 +398,9 @@ class TestConvergence:
     def test_loss_non_negative(self):
         """MSE loss should never go negative."""
         net = matt.nn.Sequential()
-        net.add(matt.nn.Linear(4, 8))
+        net.add(matt.nn.Linear(4, 8, Normal(0, 0.1, 42)))
         net.add(matt.nn.ReLU())
-        net.add(matt.nn.Linear(8, 1))
+        net.add(matt.nn.Linear(8, 1, Normal(0, 0.1, 42)))
         x_np = RNG.uniform(-1, 1, size=(5, 4)).astype(np.float32)
         y_np = RNG.uniform(-1, 1, size=(5, 1)).astype(np.float32)
         losses = self._train(net, x_np, y_np, lr=0.01, steps=200)

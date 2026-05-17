@@ -3,6 +3,9 @@ sys.path.insert(0, 'build')
 import matt
 import pytest
 
+Normal = matt.nn.weight_initializer.Normal
+KaimingUniform = matt.nn.weight_initializer.KaimingUniform
+
 # ── Tensor ────────────────────────────────────────────────────────────────────
 
 def test_tensor_zeros_shape():
@@ -65,21 +68,21 @@ def test_ops_sum():
 # ── nn.Linear ─────────────────────────────────────────────────────────────────
 
 def test_linear_parameter_count():
-    linear = matt.nn.Linear(4, 8)
+    linear = matt.nn.Linear(4, 8, Normal(0, 0.1, 42))
     assert len(linear.parameters()) == 2
 
 def test_linear_no_bias_parameter_count():
-    linear = matt.nn.Linear(4, 8, False)
+    linear = matt.nn.Linear(4, 8, KaimingUniform(42), False)
     assert len(linear.parameters()) == 1
 
 def test_linear_forward_shape():
-    linear = matt.nn.Linear(4, 8)
+    linear = matt.nn.Linear(4, 8, Normal(0, 0.1, 42))
     x = matt.Tensor.ones([2, 4])
     out = linear.forward(x)
     assert out.shape() == [2, 8]
 
 def test_linear_training_mode():
-    linear = matt.nn.Linear(4, 8)
+    linear = matt.nn.Linear(4, 8, Normal(0, 0.1, 42))
     assert linear.is_training()
     linear.train(False)
     assert not linear.is_training()
@@ -90,24 +93,24 @@ def test_linear_training_mode():
 
 def test_sequential_forward_shape():
     net = matt.nn.Sequential()
-    net.add(matt.nn.Linear(4, 8))
+    net.add(matt.nn.Linear(4, 8, Normal(0, 0.1, 42)))
     net.add(matt.nn.ReLU())
-    net.add(matt.nn.Linear(8, 2))
+    net.add(matt.nn.Linear(8, 2, Normal(0, 0.1, 42)))
     x = matt.Tensor.ones([3, 4])
     out = net.forward(x)
     assert out.shape() == [3, 2]
 
 def test_sequential_parameter_count():
     net = matt.nn.Sequential()
-    net.add(matt.nn.Linear(4, 8))
+    net.add(matt.nn.Linear(4, 8, Normal(0, 0.1, 42)))
     net.add(matt.nn.ReLU())
-    net.add(matt.nn.Linear(8, 2))
+    net.add(matt.nn.Linear(8, 2, Normal(0, 0.1, 42)))
     # 2 params per Linear x 2 = 4
     assert len(net.parameters()) == 4
 
 def test_sequential_training_mode_propagates():
     net = matt.nn.Sequential()
-    net.add(matt.nn.Linear(2, 4))
+    net.add(matt.nn.Linear(2, 4, Normal(0, 0.1, 42)))
     net.add(matt.nn.ReLU())
     assert net.is_training()
     net.train(False)
@@ -125,7 +128,7 @@ def test_mseloss_output_shape():
 # ── optim.SGD ─────────────────────────────────────────────────────────────────
 
 def test_sgd_step_runs():
-    linear = matt.nn.Linear(2, 1)
+    linear = matt.nn.Linear(2, 1, Normal(0, 0.1, 42))
     optim  = matt.optim.SGD(linear.parameters(), 0.01)
     x      = matt.Tensor.ones([1, 2])
     out    = linear.forward(x)
@@ -138,9 +141,9 @@ def test_sgd_step_runs():
 
 def test_e2e_loss_decreases():
     net = matt.nn.Sequential()
-    net.add(matt.nn.Linear(2, 4))
+    net.add(matt.nn.Linear(2, 4, Normal(0, 0.1, 42)))
     net.add(matt.nn.ReLU())
-    net.add(matt.nn.Linear(4, 1))
+    net.add(matt.nn.Linear(4, 1, Normal(0, 0.1, 42)))
 
     optim     = matt.optim.SGD(net.parameters(), 0.01)
     criterion = matt.nn.MSELoss()
