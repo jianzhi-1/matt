@@ -24,6 +24,14 @@ public:
     Tensor forward(const Tensor& x) override;
     std::string name() const override { return "Sequential"; }
 
+    void add_module(std::shared_ptr<Module> m) {
+        std::string key = std::to_string(layers_.size());
+        register_module(key, m);
+        layers_.push_back([m](const Tensor& x) -> Tensor {
+            return m->forward(x);
+        });
+    }
+
 private:
     std::vector<std::function<Tensor(const Tensor&)>> layers_;
 };

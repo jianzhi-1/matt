@@ -2,3 +2,4 @@ build/
 .clang-tidy
 docs/
 latex/
+*/__pycache__/
