@@ -11,6 +11,7 @@ enum class BinaryOpType {
 enum class UnaryOpType { Relu, Negate };
 enum class ReduceOpType { Sum };
 
+// Represents the memory and compute interfaces for a single device.
 class Backend {
 public:
     virtual ~Backend() = default;
