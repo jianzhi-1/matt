@@ -29,7 +29,7 @@ public:
     static Tensor forward(const Tensor& a, const Tensor& b);
 };
 
-class SubOp: public BinaryOp<AddBackward>{
+class SubOp: public BinaryOp<SubBackward>{
 public:
     static Tensor forward(const Tensor& a, const Tensor& b);
 };

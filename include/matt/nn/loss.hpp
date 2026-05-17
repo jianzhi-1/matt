@@ -10,10 +10,9 @@ class MSELoss {
 public:
     Tensor forward(const Tensor& pred, const Tensor& target) const {
         Tensor diff = ops::sub(pred, target);
-        // TODO: divide by numel
-        return ops::sum(ops::mul(diff, diff));
+        Tensor n = Tensor::from_data({1.0f / static_cast<float>(pred.numel())}, {1});
+        return ops::mul(ops::sum(ops::mul(diff, diff)), n);
     }
 };
-
 }
 }
