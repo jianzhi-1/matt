@@ -13,7 +13,8 @@ using namespace matt::optim;
 
 class LinearTest : public ::testing::Test {
   protected:
-    Linear linear{4, 8};
+    weight_initializer::Zeros zeros;
+    Linear linear{4, 8, zeros};
     Tensor x = Tensor::ones({2, 4});
 };
 
@@ -25,7 +26,7 @@ TEST_F(LinearTest, ParameterCount) {
 }
 
 TEST_F(LinearTest, NoBiasParameterCount) {
-    Linear no_bias{4, 8, false};
+    Linear no_bias{4, 8, zeros, false};
     EXPECT_EQ(no_bias.parameters().size(), 1);
 }
 
@@ -55,8 +56,8 @@ TEST_F(LinearTest, ForwardOutputShape) {
     EXPECT_EQ(out.shape(), (std::vector<size_t>{2, 8}));
 }
 
-TEST_F(LinearTest, ForwardZeroWeightZeroBias) {
-    // weight and bias are zeros (default init), so output should be all zeros
+TEST_F(LinearTest, ForwardZeroWeightZeroBiasOutputIsZero) {
+    // Zeros initializer → output must be zero regardless of input
     Tensor out = linear.forward(x);
     for (size_t i = 0; i < 2; i++)
         for (size_t j = 0; j < 8; j++)
@@ -64,7 +65,7 @@ TEST_F(LinearTest, ForwardZeroWeightZeroBias) {
 }
 
 TEST_F(LinearTest, ForwardNoBiasOutputShape) {
-    Linear no_bias{4, 8, false};
+    Linear no_bias{4, 8, zeros, false};
     Tensor out = no_bias.forward(x);
     EXPECT_EQ(out.shape(), (std::vector<size_t>{2, 8}));
 }
@@ -123,8 +124,11 @@ TEST_F(LinearTest, ZeroGradClearsGrad) {
 
 // -- E2E --
 TEST(E2ETest, MLPLossDecreasesOverSteps) {
+    weight_initializer::Normal init({0, 1, 42});
     auto net = std::make_shared<Sequential>(
-        std::make_shared<Linear>(2, 4), std::make_shared<ReLU>(), std::make_shared<Linear>(4, 1));
+        std::make_shared<Linear>(2, 4, init),
+        std::make_shared<ReLU>(),
+        std::make_shared<Linear>(4, 1, init));
 
     SGD optimizer(net->parameters(), 0.01f);
     MSELoss criterion;
