@@ -125,10 +125,9 @@ TEST_F(LinearTest, ZeroGradClearsGrad) {
 // -- E2E --
 TEST(E2ETest, MLPLossDecreasesOverSteps) {
     weight_initializer::Normal init({0, 1, 42});
-    auto net = std::make_shared<Sequential>(
-        std::make_shared<Linear>(2, 4, init),
-        std::make_shared<ReLU>(),
-        std::make_shared<Linear>(4, 1, init));
+    auto net =
+        std::make_shared<Sequential>(std::make_shared<Linear>(2, 4, init), std::make_shared<ReLU>(),
+                                     std::make_shared<Linear>(4, 1, init));
 
     SGD optimizer(net->parameters(), 0.01f);
     MSELoss criterion;
