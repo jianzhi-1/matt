@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['tensor_0',['Tensor',['../classmatt_1_1Tensor.html',1,'matt']]],
-  ['tensordata_1',['TensorData',['../classmatt_1_1TensorData.html',1,'matt']]],
-  ['transposebackward_2',['TransposeBackward',['../classmatt_1_1TransposeBackward.html',1,'matt']]]
+  ['relu_0',['ReLU',['../classmatt_1_1nn_1_1ReLU.html',1,'matt::nn']]],
+  ['relubackward_1',['ReluBackward',['../classmatt_1_1ReluBackward.html',1,'matt']]],
+  ['reluop_2',['ReluOp',['../classmatt_1_1ops_1_1ReluOp.html',1,'matt::ops']]]
 ];

@@ -1,6 +1,10 @@
 var searchData=
 [
-  ['parameters_0',['parameters',['../classmatt_1_1nn_1_1Module.html#a88ad652a8fc46af7dbe3f5eeef1b088b',1,'matt::nn::Module']]],
-  ['params_5f_1',['params_',['../classmatt_1_1optim_1_1Optimizer.html#a7da1f7ec8b5fbf68de6194cde4a1598a',1,'matt::optim::Optimizer']]],
-  ['print_2',['print',['../classmatt_1_1Tensor.html#ad575a8c99c02bffd315706c041fc846d',1,'matt::Tensor']]]
+  ['offset_0',['offset',['../classmatt_1_1Tensor.html#a8d8a6b714290de64793c770d82d472dc',1,'matt::Tensor']]],
+  ['ones_1',['ones',['../classmatt_1_1Tensor.html#aa18b84d68bf38b8741f2b90f5eabc846',1,'matt::Tensor']]],
+  ['op_2',['Op',['../classmatt_1_1ops_1_1Op.html',1,'matt::ops']]],
+  ['ops_2ecpp_3',['ops.cpp',['../ops_8cpp.html',1,'']]],
+  ['ops_2ehpp_4',['ops.hpp',['../ops_8hpp.html',1,'']]],
+  ['optimizer_5',['optimizer',['../classmatt_1_1optim_1_1Optimizer.html',1,'matt::optim::Optimizer'],['../classmatt_1_1optim_1_1Optimizer.html#a1f8a5bf5ac1848c8911038bada54269b',1,'matt::optim::Optimizer::Optimizer()']]],
+  ['optimizer_2ehpp_6',['optimizer.hpp',['../optimizer_8hpp.html',1,'']]]
 ];

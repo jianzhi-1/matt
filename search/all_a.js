@@ -1,8 +1,20 @@
 var searchData=
 [
-  ['name_0',['name',['../classmatt_1_1GradFn.html#ae69f8589593b359072049aad9eb9c845',1,'matt::GradFn::name()'],['../classmatt_1_1AddBackward.html#ae689dbb034bac0b012ff7251a4cf708c',1,'matt::AddBackward::name()'],['../classmatt_1_1SubBackward.html#a12247f6ee35750863bf1a9cff25fca72',1,'matt::SubBackward::name()'],['../classmatt_1_1MulBackward.html#ad222dff17e42d75bc9b6a23faa3fffb4',1,'matt::MulBackward::name()'],['../classmatt_1_1MatmulBackward.html#a5a822abcd245af0c90ca214c48d18fef',1,'matt::MatmulBackward::name()'],['../classmatt_1_1ReluBackward.html#ad0a41aa3bc5bca3f70c1c914e0a649a3',1,'matt::ReluBackward::name()'],['../classmatt_1_1SumBackward.html#a25a97260e4bff3f597a7c5c9b1cdb9ab',1,'matt::SumBackward::name()'],['../classmatt_1_1TransposeBackward.html#ab975c2a5b4b81fd82e6190177d2c468a',1,'matt::TransposeBackward::name()'],['../classmatt_1_1nn_1_1ReLU.html#a83b8545227a09c053403769a127aa96f',1,'matt::nn::ReLU::name()'],['../classmatt_1_1nn_1_1Linear.html#a56282705f91954517397083ee535daed',1,'matt::nn::Linear::name()'],['../classmatt_1_1nn_1_1Module.html#a4c24dd093985452979cb0b5db85dd735',1,'matt::nn::Module::name()'],['../classmatt_1_1nn_1_1Sequential.html#adb5857d74cf63b05a1f8c089be05ec3f',1,'matt::nn::Sequential::name()']]],
-  ['named_5fparameters_1',['named_parameters',['../classmatt_1_1nn_1_1Module.html#ab18facfa8a917dee19c70f761a6ca08a',1,'matt::nn::Module']]],
-  ['ndim_2',['ndim',['../classmatt_1_1Tensor.html#a6c99324b2014187a86de160fb64aaef7',1,'matt::Tensor']]],
-  ['numel_3',['numel',['../classmatt_1_1Tensor.html#a6738a32dd2524bae10ea51b0d11678eb',1,'matt::Tensor']]],
-  ['numel_5fof_4',['numel_of',['../namespacematt_1_1shape__utils.html#a3885400626529da3409307f4314bcafc',1,'matt::shape_utils']]]
+  ['make_5fgrad_5ffn_0',['make_grad_fn',['../classmatt_1_1ops_1_1UnaryOp.html#ae25644fda90c835f475d7b605eb3c267',1,'matt::ops::UnaryOp::make_grad_fn()'],['../classmatt_1_1ops_1_1BinaryOp.html#a6b5cfec00a5e88299303215726417ec9',1,'matt::ops::BinaryOp::make_grad_fn()']]],
+  ['matmul_1',['matmul',['../namespacematt_1_1ops.html#a0a5e0ae33aa8bcc34a002aff8d874f76',1,'matt::ops']]],
+  ['matmulbackward_2',['MatmulBackward',['../classmatt_1_1MatmulBackward.html',1,'matt']]],
+  ['matmulop_3',['MatmulOp',['../classmatt_1_1ops_1_1MatmulOp.html',1,'matt::ops']]],
+  ['matt_4',['matt',['../namespacematt.html',1,'']]],
+  ['matt_3a_3ann_5',['nn',['../namespacematt_1_1nn.html',1,'matt']]],
+  ['matt_3a_3ann_3a_3aweight_5finitializer_6',['weight_initializer',['../namespacematt_1_1nn_1_1weight__initializer.html',1,'matt::nn']]],
+  ['matt_3a_3aops_7',['ops',['../namespacematt_1_1ops.html',1,'matt']]],
+  ['matt_3a_3aoptim_8',['optim',['../namespacematt_1_1optim.html',1,'matt']]],
+  ['matt_3a_3ashape_5futils_9',['shape_utils',['../namespacematt_1_1shape__utils.html',1,'matt']]],
+  ['module_10',['Module',['../classmatt_1_1nn_1_1Module.html',1,'matt::nn']]],
+  ['module_2ecpp_11',['module.cpp',['../module_8cpp.html',1,'']]],
+  ['module_2ehpp_12',['module.hpp',['../module_8hpp.html',1,'']]],
+  ['mseloss_13',['MSELoss',['../classmatt_1_1nn_1_1MSELoss.html',1,'matt::nn']]],
+  ['mul_14',['mul',['../namespacematt_1_1ops.html#a08dabd5b2d57330a951a78b12d047b71',1,'matt::ops']]],
+  ['mulbackward_15',['MulBackward',['../classmatt_1_1MulBackward.html',1,'matt']]],
+  ['mulop_16',['MulOp',['../classmatt_1_1ops_1_1MulOp.html',1,'matt::ops']]]
 ];

@@ -99,35 +99,38 @@ $(document).ready(function(){initNavTree('linear_8hpp_source.html',''); initResi
 <div class="contents">
 <a href="linear_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;<a class="code" href="module_8hpp.html">matt/nn/module.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="tensor_8hpp.html">matt/tensor.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacematt.html">matt</a> {</div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span>nn {</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="foldopen" id="foldopen00007" data-start="{" data-end="};">
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="classmatt_1_1nn_1_1Linear.html">    7</a></span><span class="keyword">class </span><a class="code hl_class" href="classmatt_1_1nn_1_1Linear.html">Linear</a>: <span class="keyword">public</span> <a class="code hl_class" href="classmatt_1_1nn_1_1Module.html">Module</a> {</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <a class="code hl_class" href="classmatt_1_1nn_1_1Linear.html">Linear</a>(<span class="keywordtype">size_t</span> input_dim, <span class="keywordtype">size_t</span> output_dim, <span class="keywordtype">bool</span> use_bias=<span class="keyword">true</span>);</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <a class="code hl_class" href="classmatt_1_1Tensor.html">Tensor</a> <a class="code hl_function" href="classmatt_1_1nn_1_1Linear.html#a3975f2b4148ced37b587e6aa1cc9a179">forward</a>(<span class="keyword">const</span> <a class="code hl_class" href="classmatt_1_1Tensor.html">Tensor</a>&amp; x) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classmatt_1_1nn_1_1Linear.html#a56282705f91954517397083ee535daed">   12</a></span>    std::string <a class="code hl_function" href="classmatt_1_1nn_1_1Linear.html#a56282705f91954517397083ee535daed">name</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <span class="stringliteral">&quot;Linear&quot;</span>; }</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keywordtype">size_t</span> input_dim_, output_dim_;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keywordtype">bool</span> use_bias_;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_class" href="classmatt_1_1Tensor.html">Tensor</a> weight_, bias_;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>};</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="weight__initializer_8hpp.html">matt/nn/weight_initializer/weight_initializer.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="tensor_8hpp.html">matt/tensor.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacematt.html">matt</a> {</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span>nn {</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="foldopen" id="foldopen00008" data-start="{" data-end="};">
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="classmatt_1_1nn_1_1Linear.html">    8</a></span><span class="keyword">class </span><a class="code hl_class" href="classmatt_1_1nn_1_1Linear.html">Linear</a>: <span class="keyword">public</span> <a class="code hl_class" href="classmatt_1_1nn_1_1Module.html">Module</a> {</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <a class="code hl_class" href="classmatt_1_1nn_1_1Linear.html">Linear</a>(<span class="keywordtype">size_t</span> input_dim, <span class="keywordtype">size_t</span> output_dim, <span class="keyword">const</span> <a class="code hl_class" href="classmatt_1_1nn_1_1weight__initializer_1_1WeightInitializer.html">weight_initializer::WeightInitializer</a>&amp; weight_initializer, <span class="keywordtype">bool</span> use_bias=<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <a class="code hl_class" href="classmatt_1_1Tensor.html">Tensor</a> <a class="code hl_function" href="classmatt_1_1nn_1_1Linear.html#a3975f2b4148ced37b587e6aa1cc9a179">forward</a>(<span class="keyword">const</span> <a class="code hl_class" href="classmatt_1_1Tensor.html">Tensor</a>&amp; x) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classmatt_1_1nn_1_1Linear.html#a56282705f91954517397083ee535daed">   13</a></span>    std::string <a class="code hl_function" href="classmatt_1_1nn_1_1Linear.html#a56282705f91954517397083ee535daed">name</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <span class="stringliteral">&quot;Linear&quot;</span>; }</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keywordtype">size_t</span> input_dim_, output_dim_;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keywordtype">bool</span> use_bias_;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_class" href="classmatt_1_1Tensor.html">Tensor</a> weight_, bias_;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>};</div>
 </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>}</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>}</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>}</div>
 <div class="ttc" id="aclassmatt_1_1Tensor_html"><div class="ttname"><a href="classmatt_1_1Tensor.html">matt::Tensor</a></div><div class="ttdef"><b>Definition</b> tensor.hpp:29</div></div>
-<div class="ttc" id="aclassmatt_1_1nn_1_1Linear_html"><div class="ttname"><a href="classmatt_1_1nn_1_1Linear.html">matt::nn::Linear</a></div><div class="ttdef"><b>Definition</b> linear.hpp:7</div></div>
-<div class="ttc" id="aclassmatt_1_1nn_1_1Linear_html_a3975f2b4148ced37b587e6aa1cc9a179"><div class="ttname"><a href="classmatt_1_1nn_1_1Linear.html#a3975f2b4148ced37b587e6aa1cc9a179">matt::nn::Linear::forward</a></div><div class="ttdeci">Tensor forward(const Tensor &amp;x) override</div><div class="ttdef"><b>Definition</b> linear.cpp:18</div></div>
-<div class="ttc" id="aclassmatt_1_1nn_1_1Linear_html_a56282705f91954517397083ee535daed"><div class="ttname"><a href="classmatt_1_1nn_1_1Linear.html#a56282705f91954517397083ee535daed">matt::nn::Linear::name</a></div><div class="ttdeci">std::string name() const override</div><div class="ttdef"><b>Definition</b> linear.hpp:12</div></div>
+<div class="ttc" id="aclassmatt_1_1nn_1_1Linear_html"><div class="ttname"><a href="classmatt_1_1nn_1_1Linear.html">matt::nn::Linear</a></div><div class="ttdef"><b>Definition</b> linear.hpp:8</div></div>
+<div class="ttc" id="aclassmatt_1_1nn_1_1Linear_html_a3975f2b4148ced37b587e6aa1cc9a179"><div class="ttname"><a href="classmatt_1_1nn_1_1Linear.html#a3975f2b4148ced37b587e6aa1cc9a179">matt::nn::Linear::forward</a></div><div class="ttdeci">Tensor forward(const Tensor &amp;x) override</div><div class="ttdef"><b>Definition</b> linear.cpp:21</div></div>
+<div class="ttc" id="aclassmatt_1_1nn_1_1Linear_html_a56282705f91954517397083ee535daed"><div class="ttname"><a href="classmatt_1_1nn_1_1Linear.html#a56282705f91954517397083ee535daed">matt::nn::Linear::name</a></div><div class="ttdeci">std::string name() const override</div><div class="ttdef"><b>Definition</b> linear.hpp:13</div></div>
 <div class="ttc" id="aclassmatt_1_1nn_1_1Module_html"><div class="ttname"><a href="classmatt_1_1nn_1_1Module.html">matt::nn::Module</a></div><div class="ttdef"><b>Definition</b> module.hpp:13</div></div>
+<div class="ttc" id="aclassmatt_1_1nn_1_1weight__initializer_1_1WeightInitializer_html"><div class="ttname"><a href="classmatt_1_1nn_1_1weight__initializer_1_1WeightInitializer.html">matt::nn::weight_initializer::WeightInitializer</a></div><div class="ttdef"><b>Definition</b> weight_initializer.hpp:9</div></div>
 <div class="ttc" id="amodule_8hpp_html"><div class="ttname"><a href="module_8hpp.html">module.hpp</a></div></div>
 <div class="ttc" id="anamespacematt_html"><div class="ttname"><a href="namespacematt.html">matt</a></div><div class="ttdef"><b>Definition</b> grad_fn.cpp:5</div></div>
 <div class="ttc" id="atensor_8hpp_html"><div class="ttname"><a href="tensor_8hpp.html">tensor.hpp</a></div></div>
+<div class="ttc" id="aweight__initializer_8hpp_html"><div class="ttname"><a href="weight__initializer_8hpp.html">weight_initializer.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

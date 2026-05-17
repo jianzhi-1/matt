@@ -21,14 +21,16 @@ var hierarchy =
     [ "matt::nn::MSELoss", "classmatt_1_1nn_1_1MSELoss.html", null ],
     [ "matt::ops::Op", "classmatt_1_1ops_1_1Op.html", [
       [ "matt::ops::BinaryOp< AddBackward >", "classmatt_1_1ops_1_1BinaryOp.html", [
-        [ "matt::ops::AddOp", "classmatt_1_1ops_1_1AddOp.html", null ],
-        [ "matt::ops::SubOp", "classmatt_1_1ops_1_1SubOp.html", null ]
+        [ "matt::ops::AddOp", "classmatt_1_1ops_1_1AddOp.html", null ]
       ] ],
       [ "matt::ops::BinaryOp< MatmulBackward >", "classmatt_1_1ops_1_1BinaryOp.html", [
         [ "matt::ops::MatmulOp", "classmatt_1_1ops_1_1MatmulOp.html", null ]
       ] ],
       [ "matt::ops::BinaryOp< MulBackward >", "classmatt_1_1ops_1_1BinaryOp.html", [
         [ "matt::ops::MulOp", "classmatt_1_1ops_1_1MulOp.html", null ]
+      ] ],
+      [ "matt::ops::BinaryOp< SubBackward >", "classmatt_1_1ops_1_1BinaryOp.html", [
+        [ "matt::ops::SubOp", "classmatt_1_1ops_1_1SubOp.html", null ]
       ] ],
       [ "matt::ops::UnaryOp< ReluBackward >", "classmatt_1_1ops_1_1UnaryOp.html", [
         [ "matt::ops::ReluOp", "classmatt_1_1ops_1_1ReluOp.html", null ]
@@ -44,5 +46,11 @@ var hierarchy =
     ] ],
     [ "matt::Storage", "classmatt_1_1Storage.html", null ],
     [ "matt::Tensor", "classmatt_1_1Tensor.html", null ],
-    [ "matt::TensorData", "classmatt_1_1TensorData.html", null ]
+    [ "matt::TensorData", "classmatt_1_1TensorData.html", null ],
+    [ "matt::nn::weight_initializer::WeightInitializer", "classmatt_1_1nn_1_1weight__initializer_1_1WeightInitializer.html", [
+      [ "matt::nn::weight_initializer::KaimingUniform", "classmatt_1_1nn_1_1weight__initializer_1_1KaimingUniform.html", null ],
+      [ "matt::nn::weight_initializer::Normal", "classmatt_1_1nn_1_1weight__initializer_1_1Normal.html", null ],
+      [ "matt::nn::weight_initializer::Uniform", "classmatt_1_1nn_1_1weight__initializer_1_1Uniform.html", null ],
+      [ "matt::nn::weight_initializer::Zeros", "classmatt_1_1nn_1_1weight__initializer_1_1Zeros.html", null ]
+    ] ]
 ];

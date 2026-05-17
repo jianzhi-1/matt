@@ -2,6 +2,13 @@ var annotated_dup =
 [
     [ "matt", "namespacematt.html", [
       [ "nn", "namespacematt_1_1nn.html", [
+        [ "weight_initializer", "namespacematt_1_1nn_1_1weight__initializer.html", [
+          [ "KaimingUniform", "classmatt_1_1nn_1_1weight__initializer_1_1KaimingUniform.html", "classmatt_1_1nn_1_1weight__initializer_1_1KaimingUniform" ],
+          [ "Normal", "classmatt_1_1nn_1_1weight__initializer_1_1Normal.html", "classmatt_1_1nn_1_1weight__initializer_1_1Normal" ],
+          [ "Uniform", "classmatt_1_1nn_1_1weight__initializer_1_1Uniform.html", "classmatt_1_1nn_1_1weight__initializer_1_1Uniform" ],
+          [ "WeightInitializer", "classmatt_1_1nn_1_1weight__initializer_1_1WeightInitializer.html", "classmatt_1_1nn_1_1weight__initializer_1_1WeightInitializer" ],
+          [ "Zeros", "classmatt_1_1nn_1_1weight__initializer_1_1Zeros.html", "classmatt_1_1nn_1_1weight__initializer_1_1Zeros" ]
+        ] ],
         [ "Linear", "classmatt_1_1nn_1_1Linear.html", "classmatt_1_1nn_1_1Linear" ],
         [ "Module", "classmatt_1_1nn_1_1Module.html", "classmatt_1_1nn_1_1Module" ],
         [ "MSELoss", "classmatt_1_1nn_1_1MSELoss.html", "classmatt_1_1nn_1_1MSELoss" ],

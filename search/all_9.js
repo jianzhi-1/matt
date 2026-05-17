@@ -1,19 +1,10 @@
 var searchData=
 [
-  ['make_5fgrad_5ffn_0',['make_grad_fn',['../classmatt_1_1ops_1_1UnaryOp.html#ae25644fda90c835f475d7b605eb3c267',1,'matt::ops::UnaryOp::make_grad_fn()'],['../classmatt_1_1ops_1_1BinaryOp.html#a6b5cfec00a5e88299303215726417ec9',1,'matt::ops::BinaryOp::make_grad_fn()']]],
-  ['matmul_1',['matmul',['../namespacematt_1_1ops.html#a0a5e0ae33aa8bcc34a002aff8d874f76',1,'matt::ops']]],
-  ['matmulbackward_2',['MatmulBackward',['../classmatt_1_1MatmulBackward.html',1,'matt']]],
-  ['matmulop_3',['MatmulOp',['../classmatt_1_1ops_1_1MatmulOp.html',1,'matt::ops']]],
-  ['matt_4',['matt',['../namespacematt.html',1,'']]],
-  ['matt_3a_3ann_5',['nn',['../namespacematt_1_1nn.html',1,'matt']]],
-  ['matt_3a_3aops_6',['ops',['../namespacematt_1_1ops.html',1,'matt']]],
-  ['matt_3a_3aoptim_7',['optim',['../namespacematt_1_1optim.html',1,'matt']]],
-  ['matt_3a_3ashape_5futils_8',['shape_utils',['../namespacematt_1_1shape__utils.html',1,'matt']]],
-  ['module_9',['Module',['../classmatt_1_1nn_1_1Module.html',1,'matt::nn']]],
-  ['module_2ecpp_10',['module.cpp',['../module_8cpp.html',1,'']]],
-  ['module_2ehpp_11',['module.hpp',['../module_8hpp.html',1,'']]],
-  ['mseloss_12',['MSELoss',['../classmatt_1_1nn_1_1MSELoss.html',1,'matt::nn']]],
-  ['mul_13',['mul',['../namespacematt_1_1ops.html#a08dabd5b2d57330a951a78b12d047b71',1,'matt::ops']]],
-  ['mulbackward_14',['MulBackward',['../classmatt_1_1MulBackward.html',1,'matt']]],
-  ['mulop_15',['MulOp',['../classmatt_1_1ops_1_1MulOp.html',1,'matt::ops']]]
+  ['linear_0',['linear',['../classmatt_1_1nn_1_1Linear.html',1,'matt::nn::Linear'],['../classmatt_1_1nn_1_1Linear.html#a2af7c27a134e3d7cb44015f90b730075',1,'matt::nn::Linear::Linear()']]],
+  ['linear_2ecpp_1',['linear.cpp',['../linear_8cpp.html',1,'']]],
+  ['linear_2ehpp_2',['linear.hpp',['../linear_8hpp.html',1,'']]],
+  ['load_3',['load',['../classmatt_1_1nn_1_1Module.html#a8e272fdbf4dd62d27b67029e0f33eca2',1,'matt::nn::Module']]],
+  ['loss_2ehpp_4',['loss.hpp',['../loss_8hpp.html',1,'']]],
+  ['lr_5',['lr',['../classmatt_1_1optim_1_1Optimizer.html#a7de848d97e9dbbdb628c075ca92c4429',1,'matt::optim::Optimizer']]],
+  ['lr_5f_6',['lr_',['../classmatt_1_1optim_1_1Optimizer.html#a5697c628936d281a85676af5c3ad68b9',1,'matt::optim::Optimizer']]]
 ];

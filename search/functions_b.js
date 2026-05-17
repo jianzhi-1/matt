@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['parameters_0',['parameters',['../classmatt_1_1nn_1_1Module.html#a88ad652a8fc46af7dbe3f5eeef1b088b',1,'matt::nn::Module']]],
-  ['print_1',['print',['../classmatt_1_1Tensor.html#ad575a8c99c02bffd315706c041fc846d',1,'matt::Tensor']]]
+  ['offset_0',['offset',['../classmatt_1_1Tensor.html#a8d8a6b714290de64793c770d82d472dc',1,'matt::Tensor']]],
+  ['ones_1',['ones',['../classmatt_1_1Tensor.html#aa18b84d68bf38b8741f2b90f5eabc846',1,'matt::Tensor']]],
+  ['optimizer_2',['Optimizer',['../classmatt_1_1optim_1_1Optimizer.html#a1f8a5bf5ac1848c8911038bada54269b',1,'matt::optim::Optimizer']]]
 ];
