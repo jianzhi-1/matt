@@ -3,8 +3,8 @@
 #include "matt/cuda_backend.hpp"
 #include "matt/device.hpp"
 #include "matt/memory_transfer.hpp"
-#include "matt/tensor.hpp"
 #include "matt/ops.hpp"
+#include "matt/tensor.hpp"
 #include "test_utils.hpp"
 #include <gtest/gtest.h>
 
@@ -37,14 +37,14 @@ TEST(DeviceTest, DeviceEquality) {
 // ── Backend ───────────────────────────────────────────────────────────────────
 
 TEST(BackendTest, GetCPUBackend) {
-    Backend* b = get_backend(Device::cpu());
+    Backend *b = get_backend(Device::cpu());
     EXPECT_NE(b, nullptr);
     EXPECT_TRUE(b->device().is_cpu());
 }
 
 TEST(BackendTest, CPUBackendIsSingleton) {
-    Backend* a = get_backend(Device::cpu());
-    Backend* b = get_backend(Device::cpu());
+    Backend *a = get_backend(Device::cpu());
+    Backend *b = get_backend(Device::cpu());
     EXPECT_EQ(a, b);
 }
 
@@ -57,15 +57,15 @@ TEST(BackendTest, UnknownDeviceThrows) {
 // ── CPUBackend ops ────────────────────────────────────────────────────────────
 
 TEST(CPUBackendTest, AllocateDeallocate) {
-    Backend* b = CPUBackend::get();
-    float* ptr = b->allocate(10);
+    Backend *b = CPUBackend::get();
+    float *ptr = b->allocate(10);
     EXPECT_NE(ptr, nullptr);
     b->deallocate(ptr);
 }
 
 TEST(CPUBackendTest, Fill) {
-    Backend* b = CPUBackend::get();
-    float* ptr = b->allocate(4);
+    Backend *b = CPUBackend::get();
+    float *ptr = b->allocate(4);
     b->fill(ptr, 3.14f, 4);
     for (size_t i = 0; i < 4; i++)
         EXPECT_FLOAT_EQ(ptr[i], 3.14f);
@@ -73,10 +73,10 @@ TEST(CPUBackendTest, Fill) {
 }
 
 TEST(CPUBackendTest, ElementwiseBinaryAdd) {
-    Backend* b = CPUBackend::get();
+    Backend *b = CPUBackend::get();
     float a[] = {1, 2, 3, 4};
     float bv[] = {10, 20, 30, 40};
-    float* out = b->allocate(4);
+    float *out = b->allocate(4);
     b->elementwise_binary(a, bv, out, 4, BinaryOpType::Add);
     EXPECT_FLOAT_EQ(out[0], 11);
     EXPECT_FLOAT_EQ(out[1], 22);
@@ -86,10 +86,10 @@ TEST(CPUBackendTest, ElementwiseBinaryAdd) {
 }
 
 TEST(CPUBackendTest, ElementwiseBinarySub) {
-    Backend* b = CPUBackend::get();
+    Backend *b = CPUBackend::get();
     float a[] = {10, 20, 30, 40};
     float bv[] = {1, 2, 3, 4};
-    float* out = b->allocate(4);
+    float *out = b->allocate(4);
     b->elementwise_binary(a, bv, out, 4, BinaryOpType::Sub);
     EXPECT_FLOAT_EQ(out[0], 9);
     EXPECT_FLOAT_EQ(out[1], 18);
@@ -99,9 +99,9 @@ TEST(CPUBackendTest, ElementwiseBinarySub) {
 }
 
 TEST(CPUBackendTest, ElementwiseUnaryRelu) {
-    Backend* b = CPUBackend::get();
+    Backend *b = CPUBackend::get();
     float a[] = {-2, -1, 0, 1, 2};
-    float* out = b->allocate(5);
+    float *out = b->allocate(5);
     b->elementwise_unary(a, out, 5, UnaryOpType::Relu);
     EXPECT_FLOAT_EQ(out[0], 0);
     EXPECT_FLOAT_EQ(out[1], 0);
@@ -112,20 +112,20 @@ TEST(CPUBackendTest, ElementwiseUnaryRelu) {
 }
 
 TEST(CPUBackendTest, ReduceSum) {
-    Backend* b = CPUBackend::get();
+    Backend *b = CPUBackend::get();
     float a[] = {1, 2, 3, 4};
-    float* out = b->allocate(1);
+    float *out = b->allocate(1);
     b->reduce(a, out, 4, ReduceOpType::Sum);
     EXPECT_FLOAT_EQ(out[0], 10);
     b->deallocate(out);
 }
 
 TEST(CPUBackendTest, Matmul) {
-    Backend* b = CPUBackend::get();
+    Backend *b = CPUBackend::get();
     // [2,2] @ [2,2]
     float a[] = {1, 2, 3, 4};
-    float bv[] = {1, 0, 0, 1};  // identity
-    float* out = b->allocate(4);
+    float bv[] = {1, 0, 0, 1}; // identity
+    float *out = b->allocate(4);
     b->matmul(a, bv, out, 2, 2, 2);
     EXPECT_FLOAT_EQ(out[0], 1);
     EXPECT_FLOAT_EQ(out[1], 2);
@@ -137,10 +137,10 @@ TEST(CPUBackendTest, Matmul) {
 // ── Memory transfer ───────────────────────────────────────────────────────────
 
 TEST(MemoryTransferTest, CPUtoCPU) {
-    Backend* cpu = CPUBackend::get();
-    float* src = cpu->allocate(4);
+    Backend *cpu = CPUBackend::get();
+    float *src = cpu->allocate(4);
     cpu->fill(src, 7.0f, 4);
-    float* dst = cpu->allocate(4);
+    float *dst = cpu->allocate(4);
     memory_transfer(dst, cpu, src, cpu, 4);
     for (size_t i = 0; i < 4; i++)
         EXPECT_FLOAT_EQ(dst[i], 7.0f);
@@ -149,10 +149,13 @@ TEST(MemoryTransferTest, CPUtoCPU) {
 }
 
 TEST(MemoryTransferTest, CPUtoCPUPreservesValues) {
-    Backend* cpu = CPUBackend::get();
-    float* src = cpu->allocate(4);
-    src[0] = 1.f; src[1] = 2.f; src[2] = 3.f; src[3] = 4.f;
-    float* dst = cpu->allocate(4);
+    Backend *cpu = CPUBackend::get();
+    float *src = cpu->allocate(4);
+    src[0] = 1.f;
+    src[1] = 2.f;
+    src[2] = 3.f;
+    src[3] = 4.f;
+    float *dst = cpu->allocate(4);
     memory_transfer(dst, cpu, src, cpu, 4);
     EXPECT_FLOAT_EQ(dst[0], 1.f);
     EXPECT_FLOAT_EQ(dst[1], 2.f);
@@ -164,14 +167,11 @@ TEST(MemoryTransferTest, CPUtoCPUPreservesValues) {
 
 #ifndef MATT_CUDA
 TEST(MemoryTransferTest, CUDATransferThrowsWhenNotCompiled) {
-    Backend* cpu = CPUBackend::get();
-    float* src = cpu->allocate(4);
-    float* dst = cpu->allocate(4);
+    Backend *cpu = CPUBackend::get();
+    float *src = cpu->allocate(4);
+    float *dst = cpu->allocate(4);
     // Simulate passing a "cuda" backend — not actually CUDA, just checking the throw
-    EXPECT_THROW(
-        memory_transfer(dst, cpu, src, CUDABackend::get(0), 4),
-        std::runtime_error
-    );
+    EXPECT_THROW(memory_transfer(dst, cpu, src, CUDABackend::get(0), 4), std::runtime_error);
     cpu->deallocate(src);
     cpu->deallocate(dst);
 }
@@ -222,14 +222,14 @@ TEST(TensorDeviceTest, MismatchedDevicesThrows) {
 
 #ifdef MATT_CUDA
 TEST(CUDATest, GetCUDABackend) {
-    Backend* b = get_backend(Device::cuda(0));
+    Backend *b = get_backend(Device::cuda(0));
     EXPECT_NE(b, nullptr);
     EXPECT_TRUE(b->device().is_cuda());
 }
 
 TEST(CUDATest, CUDABackendIsSingleton) {
-    Backend* a = get_backend(Device::cuda(0));
-    Backend* b = get_backend(Device::cuda(0));
+    Backend *a = get_backend(Device::cuda(0));
+    Backend *b = get_backend(Device::cuda(0));
     EXPECT_EQ(a, b);
 }
 
@@ -241,7 +241,7 @@ TEST(CUDATest, TensorZerosOnCUDA) {
 
 TEST(CUDATest, ToCPU) {
     Tensor cpu_src = Tensor::from_data({1, 2, 3, 4}, {2, 2});
-    Tensor gpu     = cpu_src.to(Device::cuda(0));
+    Tensor gpu = cpu_src.to(Device::cuda(0));
     Tensor cpu_dst = gpu.to(Device::cpu());
     expect_tensors_close(cpu_src, cpu_dst);
 }

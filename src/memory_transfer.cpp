@@ -1,5 +1,6 @@
 #include "matt/memory_transfer.hpp"
 #include "matt/cpu_backend.hpp"
+#include <cstring>
 
 namespace matt {
 #ifndef MATT_CUDA

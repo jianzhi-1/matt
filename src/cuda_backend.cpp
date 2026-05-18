@@ -12,9 +12,10 @@ namespace matt {
 
 float *CUDABackend::allocate(size_t n) {
 #ifdef MATT_CUDA
-    float* ptr = nullptr;
+    float *ptr = nullptr;
     cudaError_t err = cudaMalloc(&ptr, n * sizeof(float));
-    if (err != cudaSuccess) throw std::runtime_error(cudaGetErrorString(err));
+    if (err != cudaSuccess)
+        throw std::runtime_error(cudaGetErrorString(err));
     return ptr;
 #endif
     throw std::runtime_error("Matt built without CUDA support");
@@ -22,39 +23,43 @@ float *CUDABackend::allocate(size_t n) {
 
 void CUDABackend::deallocate(float *ptr) {
 #ifdef MATT_CUDA
-    if (ptr == nullptr) throw std::runtime_error("CUDABackend::deallocate: deallocating a nullptr");
+    if (ptr == nullptr)
+        throw std::runtime_error("CUDABackend::deallocate: deallocating a nullptr");
     cudaError_t err = cudaFree(ptr);
-    if (err != cudaSuccess) throw std::runtime_error(cudaGetErrorString(err));
+    if (err != cudaSuccess)
+        throw std::runtime_error(cudaGetErrorString(err));
     return;
 #endif
     throw std::runtime_error("Matt built without CUDA support");
 }
 
 #ifdef MATT_CUDA
-__global__ void fill_kernel(float* ptr, float val, size_t n){
+__global__ void fill_kernel(float *ptr, float val, size_t n) {
     size_t idx = blockIdx.x * blockDim.x + threadIdx.x;
-    if (idx < n) ptr[idx] = val;
+    if (idx < n)
+        ptr[idx] = val;
 }
 #endif
 
 void CUDABackend::fill(float *ptr, float val, size_t n) {
-    #ifdef MATT_CUDA
-    if (val == 0.0f){
+#ifdef MATT_CUDA
+    if (val == 0.0f) {
         cudaMemset(ptr, 0, n * sizeof(float));
         return;
     }
     constexpr int threads = 256;
-    int blocks = (n + threads - 1)/threads;
+    int blocks = (n + threads - 1) / threads;
     fill_kernel<<<blocks, threads>>>(ptr, val, n);
     cudaError_t err = cudaGetLastError();
-    if (err != cudaSuccess) throw std::runtime_error(cudaGetErrorString(err));
+    if (err != cudaSuccess)
+        throw std::runtime_error(cudaGetErrorString(err));
     return;
-    #endif
+#endif
     throw std::runtime_error("Matt built without CUDA support");
 }
 
 void CUDABackend::elementwise_binary(const float *a, const float *b, float *out, size_t n,
-                                    BinaryOpType op) {
+                                     BinaryOpType op) {
     // TODO
 }
 
