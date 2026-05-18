@@ -32,6 +32,10 @@ public:
         return "cuda:" + std::to_string(index_);
     }
 
+    int index() const {
+        return index_;
+    }
+
 private:
     DeviceType device_type_;
     int index_;

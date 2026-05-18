@@ -22,9 +22,6 @@ public:
     virtual void deallocate(float* ptr) = 0;
     virtual void fill(float* ptr, float val, size_t n) = 0;
 
-    // Device transfers
-    virtual void copy_from(float* dst, const float* src, Backend* src_backend, size_t n) = 0;
-
     // Operations
     virtual void elementwise_binary(
         const float* a, const float* b, float* out, size_t n, BinaryOpType op
@@ -39,7 +36,7 @@ public:
     ) = 0;
 
     virtual void reduce(
-        const float* a, float* out, ReduceOpType op
+        const float* a, float* out, size_t n, ReduceOpType op
     ) = 0;
 };
 

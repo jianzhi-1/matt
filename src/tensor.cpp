@@ -30,15 +30,15 @@ Tensor Tensor::fill(const std::vector<size_t> &shape, float val, Device device) 
     return Tensor(storage, shape, get_default_strides(shape));
 }
 
-Tensor Tensor::zeros(std::vector<size_t> shape) {
+Tensor Tensor::zeros(std::vector<size_t> shape, Device device) {
     return Tensor::fill(shape, 0.f);
 }
 
-Tensor Tensor::ones(std::vector<size_t> shape) {
+Tensor Tensor::ones(std::vector<size_t> shape, Device device) {
     return Tensor::fill(shape, 1.f);
 }
 
-Tensor Tensor::from_data(const std::vector<float> &data, std::vector<size_t> shape) {
+Tensor Tensor::from_data(const std::vector<float> &data, std::vector<size_t> shape, Device device) {
     size_t cumulative_size = shape_utils::numel_of(shape);
     if (cumulative_size != data.size()) {
         throw std::runtime_error(
@@ -46,17 +46,17 @@ Tensor Tensor::from_data(const std::vector<float> &data, std::vector<size_t> sha
                                                 // assertions, also with data.shape and
                                                 // cumulative_size
     }
-    auto storage = std::make_shared<Storage>(cumulative_size);
+    auto storage = std::make_shared<Storage>(cumulative_size, device);
     std::copy(data.begin(), data.end(), storage->data()); // why not memcpy?
     return Tensor(storage, shape, get_default_strides(shape));
 }
 
-Tensor Tensor::arange(float start, float stop, float step) {
+Tensor Tensor::arange(float start, float stop, float step, Device device) {
     std::vector<float> data;
     for (float v = start; v < stop; v += step)
         data.push_back(v);
     size_t n = data.size();
-    auto storage = std::make_shared<Storage>(n);
+    auto storage = std::make_shared<Storage>(n, device);
     std::copy(data.begin(), data.end(), storage->data());
     return Tensor(storage, {n}, {1});
 }
@@ -72,12 +72,22 @@ std::vector<size_t> Tensor::get_default_strides(const std::vector<size_t> &shape
 }
 
 float Tensor::at(std::vector<size_t> indices) const {
-    return (data_->storage_->data())[flat_index(indices)];
+    size_t idx = flat_index(indices);
+    if (device().is_cpu()) {
+        return data_->storage_->data()[idx];
+    }
+#ifdef MATT_CUDA
+    float val;
+    cudaMemcpy(&val, data_->storage_->data() + idx, sizeof(float), cudaMemcpyDeviceToHost);
+    return val;
+#endif
+    throw std::runtime_error("Tensor::at: unsupported device");
 }
 
 float &Tensor::at(std::vector<size_t> indices) {
-    return (data_->storage_
-                ->data())[flat_index(indices)]; // is it possible to get rid of these duplicates?
+    if (!device().is_cpu())
+        throw std::runtime_error("Tensor::at: mutable at only supported on CPU");
+    return data_->storage_->data()[flat_index(indices)];
 }
 
 bool Tensor::is_contiguous() const {
@@ -98,7 +108,7 @@ size_t Tensor::numel() const {
 Tensor Tensor::contiguous() const {
     if (is_contiguous())
         return *this;
-    auto contiguous_tensor = Tensor::zeros(data_->shape_);
+    auto contiguous_tensor = Tensor::zeros(data_->shape_, device());
     size_t n = numel();
     std::vector<size_t> idx(ndim(), 0);
     for (size_t i = 0; i < n; i++) {

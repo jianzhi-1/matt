@@ -19,9 +19,6 @@ public:
     void deallocate(float* ptr) override;
     void fill(float* ptr, float val, size_t n) override;
 
-    // Device transfer
-    void copy_from(float* dst, const float* src, Backend* src_backend, size_t n) override;
-
     // Operations
     void elementwise_binary(
         const float* a, const float* b, float* out, size_t n, BinaryOpType op
@@ -36,7 +33,7 @@ public:
     ) override;
 
     void reduce(
-        const float* a, float* out, ReduceOpType op
+        const float* a, float* out, size_t n, ReduceOpType op
     ) override;
 
 

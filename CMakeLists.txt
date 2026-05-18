@@ -3,11 +3,32 @@ project(matt CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+# CUDA
+option(MATT_CUDA "Enable CUDA support" OFF)
+
+if(MATT_CUDA)
+    enable_language(CUDA)
+    set(CMAKE_CUDA_STANDARD 17)
+endif()
+
+
 # Library
 file(GLOB_RECURSE MATT_SOURCES "src/*.cpp")
+
+if(MATT_CUDA)
+    file(GLOB_RECURSE MATT_CUDA_SOURCES "src/*.cu")
+    list(APPEND MATT_SOURCES ${MATT_CUDA_SOURCES})
+endif()
+
 add_library(matt ${MATT_SOURCES})
 target_include_directories(matt PUBLIC include)
 set_target_properties(matt PROPERTIES POSITION_INDEPENDENT_CODE ON)
+
+if(MATT_CUDA)
+    target_compile_definitions(matt PUBLIC MATT_CUDA)
+    set_target_properties(matt PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
+    target_link_libraries(matt PUBLIC cudart cublas)
+endif()
 
 # Google test
 include(FetchContent)

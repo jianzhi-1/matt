@@ -62,6 +62,8 @@ Tensor accumulate(const Tensor &a, std::function<float(float, float)> op) {
 }
 
 template <typename Op> Tensor apply_binary(const Tensor &a, const Tensor &b) {
+    if (a.device() != b.device())
+        throw std::runtime_error("ops::apply_binary: tensors must be on the same device.");
     Tensor out = Op::forward(a, b);
     if (a.requires_grad() || b.requires_grad()) {
         out.data()->grad_fn = Op::make_grad_fn(a, b);
@@ -104,15 +106,36 @@ Tensor sum(const Tensor &a) {
 }
 
 Tensor AddOp::forward(const Tensor &a, const Tensor &b) {
-    return ops::elementwise(a, b, [](float x, float y) { return x + y; });
+    auto out_shape = shape_utils::broadcast_shape(a.shape(), b.shape());
+    auto a_broadcasted = a.broadcast_to(out_shape).contiguous();
+    auto b_broadcasted = b.broadcast_to(out_shape).contiguous();
+    auto out = Tensor::zeros(out_shape, a.device());
+    get_backend(a.device())
+        ->elementwise_binary(a_broadcasted.data_ptr(), b_broadcasted.data_ptr(), out.data_ptr(),
+                             out.numel(), BinaryOpType::Add);
+    return out;
 }
 
 Tensor SubOp::forward(const Tensor &a, const Tensor &b) {
-    return ops::elementwise(a, b, [](float x, float y) { return x - y; });
+    auto out_shape = shape_utils::broadcast_shape(a.shape(), b.shape());
+    auto a_broadcasted = a.broadcast_to(out_shape).contiguous();
+    auto b_broadcasted = b.broadcast_to(out_shape).contiguous();
+    auto out = Tensor::zeros(out_shape, a.device());
+    get_backend(a.device())
+        ->elementwise_binary(a_broadcasted.data_ptr(), b_broadcasted.data_ptr(), out.data_ptr(),
+                             out.numel(), BinaryOpType::Sub);
+    return out;
 }
 
 Tensor MulOp::forward(const Tensor &a, const Tensor &b) {
-    return ops::elementwise(a, b, [](float x, float y) { return x * y; });
+    auto out_shape = shape_utils::broadcast_shape(a.shape(), b.shape());
+    auto a_broadcasted = a.broadcast_to(out_shape).contiguous();
+    auto b_broadcasted = b.broadcast_to(out_shape).contiguous();
+    auto out = Tensor::zeros(out_shape, a.device());
+    get_backend(a.device())
+        ->elementwise_binary(a_broadcasted.data_ptr(), b_broadcasted.data_ptr(), out.data_ptr(),
+                             out.numel(), BinaryOpType::Mul);
+    return out;
 }
 
 Tensor MatmulOp::forward(const Tensor &a, const Tensor &b) {
@@ -120,29 +143,34 @@ Tensor MatmulOp::forward(const Tensor &a, const Tensor &b) {
         throw std::runtime_error("matmul: only 2D matrices allowed");
     if (a.shape()[1] != b.shape()[0])
         throw std::runtime_error("matmul: input matrices do not share common dimension");
+
     size_t M = a.shape()[0];
     size_t N = b.shape()[1];
     size_t K = a.shape()[1];
 
-    auto out = Tensor::zeros({M, N});
-    for (size_t i = 0; i < M; i++) {
-        for (size_t j = 0; j < N; j++) {
-            float acc = 0.;
-            for (size_t k = 0; k < K; k++) {
-                acc += a.at({i, k}) * b.at({k, j});
-            }
-            out.at({i, j}) = acc;
-        }
-    }
+    auto a_contiguous = a.contiguous();
+    auto b_contiguous = b.contiguous();
+    auto out = Tensor::zeros({M, N}, a.device());
+    get_backend(a.device())
+        ->matmul(a_contiguous.data_ptr(), b_contiguous.data_ptr(), out.data_ptr(), M, K, N);
     return out;
 }
 
 Tensor ReluOp::forward(const Tensor &a) {
-    return ops::elementwise_unary(a, [](float x) { return ((x >= 0.) ? x : 0.); });
+    auto a_contiguous = a.contiguous();
+    auto out = Tensor::zeros(a.shape(), a.device());
+    get_backend(a.device())
+        ->elementwise_unary(a_contiguous.data_ptr(), out.data_ptr(), out.numel(),
+                            UnaryOpType::Relu);
+    return out;
 }
 
 Tensor SumOp::forward(const Tensor &a) {
-    return ops::accumulate(a, [](float x, float y) { return x + y; });
+    auto a_contiguous = a.contiguous();
+    auto out = Tensor::zeros({1}, a.device());
+    get_backend(a.device())
+        ->reduce(a_contiguous.data_ptr(), out.data_ptr(), a_contiguous.numel(), ReduceOpType::Sum);
+    return out;
 }
 
 } // namespace ops
