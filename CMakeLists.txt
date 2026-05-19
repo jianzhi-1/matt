@@ -7,8 +7,11 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 option(MATT_CUDA "Enable CUDA support" OFF)
 
 if(MATT_CUDA)
-    enable_language(CUDA)
+    enable_language(CUDA) # Find nvcc, set up rules to compile .cu files.
     set(CMAKE_CUDA_STANDARD 17)
+    if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
+        set(CMAKE_CUDA_ARCHITECTURES 80 90) # Make nvcc generate code for SM80, SM90.
+    endif()
 endif()
 
 
@@ -25,9 +28,10 @@ target_include_directories(matt PUBLIC include)
 set_target_properties(matt PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
 if(MATT_CUDA)
+    find_package(CUDAToolkit REQUIRED) # Find CUDA toolkit to obtain targets such as cudart, cublas etc.
     target_compile_definitions(matt PUBLIC MATT_CUDA)
     set_target_properties(matt PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
-    target_link_libraries(matt PUBLIC cudart cublas)
+    target_link_libraries(matt PUBLIC CUDA::cudart CUDA::cublas)
 endif()
 
 # Google test

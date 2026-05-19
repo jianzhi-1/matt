@@ -77,6 +77,7 @@ namespace matt {
         std::shared_ptr<TensorData> data() const { return data_; }
 
         Device device() const;
+        Tensor to(Device target) const;
 
     private:
         std::shared_ptr<TensorData> data_;

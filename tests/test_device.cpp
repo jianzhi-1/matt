@@ -9,6 +9,7 @@
 #include <gtest/gtest.h>
 
 using namespace matt;
+using namespace matt::test_utils;
 
 // ── Device ───────────────────────────────────────────────────────────────────
 
