@@ -1,5 +1,6 @@
 #include "matt/tensor.hpp"
 #include "matt/grad_fn.hpp"
+#include "matt/memory_transfer.hpp"
 #include "matt/ops.hpp"
 #include "matt/shape_utils.hpp"
 #include "matt/storage.hpp"
@@ -10,6 +11,9 @@
 #include <stdexcept>
 #include <unordered_set>
 #include <vector>
+#ifdef MATT_CUDA
+#include <cuda_runtime.h>
+#endif
 
 namespace matt {
 
@@ -274,6 +278,17 @@ bool allclose(const Tensor &a, const Tensor &b, float tol) {
 
 Device Tensor::device() const {
     return data_->storage_->device();
+}
+
+Tensor Tensor::to(Device target) const {
+    if (device() == target)
+        return *this;
+    size_t n = data_->storage_->size();
+    auto new_storage = std::make_shared<Storage>(n, target);
+    memory_transfer(new_storage->data(), get_backend(target), data_->storage_->data(),
+                    get_backend(device()), n);
+    return Tensor(new_storage, data_->shape_, data_->strides_, data_->offset_,
+                  data_->requires_grad_);
 }
 
 } // namespace matt

@@ -21,7 +21,7 @@ void memory_transfer(float* dst, Backend* dst_backend, const float* src, Backend
         if (dst_index == src_index){
             cudaMemcpy(dst, src, bytes, cudaMemcpyDeviceToDevice);
         } else {
-            cudaMemcpyPeer(dst, dst_idx, src, src_idx, bytes);
+            cudaMemcpyPeer(dst, dst_index, src, src_index, bytes);
         }
     }
 }

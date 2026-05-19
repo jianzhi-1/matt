@@ -11,7 +11,7 @@ Backend *get_backend(Device device) {
         return CPUBackend::get();
 #ifdef MATT_CUDA
     if (device.is_cuda())
-        return CUDABackend::get(device.index);
+        return CUDABackend::get(device.index());
 #endif
     throw std::runtime_error("Backend::get_backend: unknown device");
 }
