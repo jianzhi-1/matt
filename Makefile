@@ -4,6 +4,10 @@ build:
 	cmake -S . -B build
 	cmake --build build
 
+build-cuda:
+	cmake -S . -B build -DMATT_CUDA=ON
+	cmake --build build
+
 test: build
 	./build/tests
 

@@ -18,11 +18,20 @@ using namespace matt::nn::weight_initializer;
 PYBIND11_MODULE(matt, m) {
     m.doc() = "matt library";
 
+    // Device
+    py::class_<Device>(m, "Device")
+        .def_static("cpu", &Device::cpu)
+        .def_static("cuda", &Device::cuda, py::arg("index") = 0)
+        .def("is_cpu", &Device::is_cpu)
+        .def("is_cuda", &Device::is_cuda)
+        .def("__repr__", &Device::str);
+
     // Tensor
     py::class_<Tensor>(m, "Tensor")
-        .def_static("zeros", &Tensor::zeros)
-        .def_static("ones", &Tensor::ones)
-        .def_static("from_data", &Tensor::from_data)
+        .def_static("zeros", &Tensor::zeros, py::arg("shape"), py::arg("device") = Device::cpu())
+        .def_static("ones", &Tensor::ones, py::arg("shape"), py::arg("device") = Device::cpu())
+        .def_static("from_data", &Tensor::from_data, py::arg("data"), py::arg("shape"),
+                    py::arg("device") = Device::cpu())
         .def("shape", &Tensor::shape)
         .def("numel", &Tensor::numel)
         .def("ndim", &Tensor::ndim)
