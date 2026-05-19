@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['zero_5fgrad_0',['zero_grad',['../classmatt_1_1nn_1_1Module.html#adfb4b219592e479450c2bb5d38ad4f3a',1,'matt::nn::Module::zero_grad()'],['../classmatt_1_1optim_1_1Optimizer.html#a87c567f094f75155af5ddd590cf14fb4',1,'matt::optim::Optimizer::zero_grad()']]],
-  ['zeros_1',['zeros',['../classmatt_1_1Tensor.html#a91338bb95243c9fd23c83d4ba52c624a',1,'matt::Tensor']]]
+  ['unarygradfn_0',['unarygradfn',['../classmatt_1_1UnaryGradFn.html#afbfebf2bdbdbeb4a8bcc3b5e053221a0',1,'matt::UnaryGradFn::UnaryGradFn()'],['../classmatt_1_1ReluBackward.html#afbfebf2bdbdbeb4a8bcc3b5e053221a0',1,'matt::ReluBackward::UnaryGradFn()'],['../classmatt_1_1SumBackward.html#afbfebf2bdbdbeb4a8bcc3b5e053221a0',1,'matt::SumBackward::UnaryGradFn()']]],
+  ['uniform_1',['Uniform',['../classmatt_1_1nn_1_1weight__initializer_1_1Uniform.html#ab35c655713369732b35a43d3380ddcf0',1,'matt::nn::weight_initializer::Uniform']]]
 ];

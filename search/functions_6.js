@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['initialize_0',['initialize',['../classmatt_1_1nn_1_1weight__initializer_1_1WeightInitializer.html#a9d9434b78b4b476e7b4a746afd075f52',1,'matt::nn::weight_initializer::WeightInitializer::initialize()'],['../classmatt_1_1nn_1_1weight__initializer_1_1Zeros.html#aa6a6998a888ed421da7b5390ab17c385',1,'matt::nn::weight_initializer::Zeros::initialize()'],['../classmatt_1_1nn_1_1weight__initializer_1_1Uniform.html#ab6f572141af7b75e62b4bff192857d29',1,'matt::nn::weight_initializer::Uniform::initialize()'],['../classmatt_1_1nn_1_1weight__initializer_1_1KaimingUniform.html#a9f993b151f6e254271a2bf180597fdf5',1,'matt::nn::weight_initializer::KaimingUniform::initialize()'],['../classmatt_1_1nn_1_1weight__initializer_1_1Normal.html#a20b94427990b2eb27c5195f721c9b7bf',1,'matt::nn::weight_initializer::Normal::initialize()']]],
-  ['is_5fcontiguous_1',['is_contiguous',['../classmatt_1_1Tensor.html#a111d598f50d7cb49e2acfb6246e94ff5',1,'matt::Tensor']]],
-  ['is_5ftraining_2',['is_training',['../classmatt_1_1nn_1_1Module.html#af10a4fe09469f2e7a149f528997e2519',1,'matt::nn::Module']]]
+  ['get_0',['get',['../classmatt_1_1CPUBackend.html#afb3b57fa6079c4f2fc709b47407836f9',1,'matt::CPUBackend::get()'],['../classmatt_1_1CUDABackend.html#ae1eb2f8ff2067f4f100e1e9d97e18bdc',1,'matt::CUDABackend::get()']]],
+  ['get_5fbackend_1',['get_backend',['../namespacematt.html#ad74f46a446e100c1ea5f3b814b7732f4',1,'matt']]]
 ];

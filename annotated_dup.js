@@ -31,7 +31,11 @@ var annotated_dup =
         [ "SGD", "classmatt_1_1optim_1_1SGD.html", "classmatt_1_1optim_1_1SGD" ]
       ] ],
       [ "AddBackward", "classmatt_1_1AddBackward.html", "classmatt_1_1AddBackward" ],
+      [ "Backend", "classmatt_1_1Backend.html", "classmatt_1_1Backend" ],
       [ "BinaryGradFn", "classmatt_1_1BinaryGradFn.html", "classmatt_1_1BinaryGradFn" ],
+      [ "CPUBackend", "classmatt_1_1CPUBackend.html", "classmatt_1_1CPUBackend" ],
+      [ "CUDABackend", "classmatt_1_1CUDABackend.html", "classmatt_1_1CUDABackend" ],
+      [ "Device", "classmatt_1_1Device.html", "classmatt_1_1Device" ],
       [ "GradFn", "classmatt_1_1GradFn.html", "classmatt_1_1GradFn" ],
       [ "MatmulBackward", "classmatt_1_1MatmulBackward.html", "classmatt_1_1MatmulBackward" ],
       [ "MulBackward", "classmatt_1_1MulBackward.html", "classmatt_1_1MulBackward" ],

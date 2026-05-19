@@ -1,8 +1,10 @@
 var searchData=
 [
-  ['unarygradfn_0',['UnaryGradFn',['../classmatt_1_1UnaryGradFn.html',1,'matt']]],
-  ['unaryop_1',['UnaryOp',['../classmatt_1_1ops_1_1UnaryOp.html',1,'matt::ops']]],
-  ['unaryop_3c_20relubackward_20_3e_2',['UnaryOp&lt; ReluBackward &gt;',['../classmatt_1_1ops_1_1UnaryOp.html',1,'matt::ops']]],
-  ['unaryop_3c_20sumbackward_20_3e_3',['UnaryOp&lt; SumBackward &gt;',['../classmatt_1_1ops_1_1UnaryOp.html',1,'matt::ops']]],
-  ['uniform_4',['Uniform',['../classmatt_1_1nn_1_1weight__initializer_1_1Uniform.html',1,'matt::nn::weight_initializer']]]
+  ['sequential_0',['Sequential',['../classmatt_1_1nn_1_1Sequential.html',1,'matt::nn']]],
+  ['sgd_1',['SGD',['../classmatt_1_1optim_1_1SGD.html',1,'matt::optim']]],
+  ['storage_2',['Storage',['../classmatt_1_1Storage.html',1,'matt']]],
+  ['subbackward_3',['SubBackward',['../classmatt_1_1SubBackward.html',1,'matt']]],
+  ['subop_4',['SubOp',['../classmatt_1_1ops_1_1SubOp.html',1,'matt::ops']]],
+  ['sumbackward_5',['SumBackward',['../classmatt_1_1SumBackward.html',1,'matt']]],
+  ['sumop_6',['SumOp',['../classmatt_1_1ops_1_1SumOp.html',1,'matt::ops']]]
 ];

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['relu_2ecpp_0',['relu.cpp',['../relu_8cpp.html',1,'']]],
-  ['relu_2ehpp_1',['relu.hpp',['../relu_8hpp.html',1,'']]]
+  ['linear_2ecpp_0',['linear.cpp',['../linear_8cpp.html',1,'']]],
+  ['linear_2ehpp_1',['linear.hpp',['../linear_8hpp.html',1,'']]],
+  ['loss_2ehpp_2',['loss.hpp',['../loss_8hpp.html',1,'']]]
 ];

@@ -98,33 +98,47 @@ $(document).ready(function(){initNavTree('storage_8hpp_source.html',''); initRes
 </div><!--header-->
 <div class="contents">
 <a href="storage_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;cstddef&gt;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacematt.html">matt</a> {</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;<a class="code" href="backend_8hpp.html">backend.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="device_8hpp.html">device.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;cstddef&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="foldopen" id="foldopen00008" data-start="{" data-end="};">
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="classmatt_1_1Storage.html">    8</a></span><span class="keyword">class </span><a class="code hl_class" href="classmatt_1_1Storage.html">Storage</a> {</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classmatt_1_1Storage.html">Storage</a>(<span class="keywordtype">size_t</span> <a class="code hl_function" href="classmatt_1_1Storage.html#a4c379a25a91430941a547469c9766137">size</a>);</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <a class="code hl_class" href="classmatt_1_1Storage.html">Storage</a>(<span class="keywordtype">size_t</span> <a class="code hl_function" href="classmatt_1_1Storage.html#a4c379a25a91430941a547469c9766137">size</a>, <span class="keywordtype">float</span> fill_value);</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classmatt_1_1Storage.html#a863a8f88e49765dd32c920914556bea9">   13</a></span>    <span class="keywordtype">float</span>* <a class="code hl_function" href="classmatt_1_1Storage.html#a863a8f88e49765dd32c920914556bea9">data</a>() { <span class="keywordflow">return</span> data_.data(); }</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classmatt_1_1Storage.html#af03e4e0a91fec7ceb9e5c8d2d6fa0b32">   14</a></span>    <span class="keyword">const</span> <span class="keywordtype">float</span>* <a class="code hl_function" href="classmatt_1_1Storage.html#af03e4e0a91fec7ceb9e5c8d2d6fa0b32">data</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> data_.data(); }</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classmatt_1_1Storage.html#a4c379a25a91430941a547469c9766137">   15</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_function" href="classmatt_1_1Storage.html#a4c379a25a91430941a547469c9766137">size</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> data_.size(); }</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    std::vector&lt;float&gt; data_;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>};</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacematt.html">matt</a> {</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// A handle to memory on a device.</span></div>
+<div class="foldopen" id="foldopen00011" data-start="{" data-end="};">
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="classmatt_1_1Storage.html">   11</a></span><span class="keyword">class </span><a class="code hl_class" href="classmatt_1_1Storage.html">Storage</a> {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classmatt_1_1Storage.html">Storage</a>(<span class="keywordtype">size_t</span> <a class="code hl_function" href="classmatt_1_1Storage.html#a4c379a25a91430941a547469c9766137">size</a>, <a class="code hl_class" href="classmatt_1_1Device.html">Device</a> <a class="code hl_function" href="classmatt_1_1Storage.html#a58dc96ca9ca3b2f789f54441126c1ade">device</a>);</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <a class="code hl_function" href="classmatt_1_1Storage.html#aa4f89dd5fe9c7fd80a37048ee7f0868e">~Storage</a>();</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classmatt_1_1Storage.html#a863a8f88e49765dd32c920914556bea9">   16</a></span>    <span class="keywordtype">float</span>* <a class="code hl_function" href="classmatt_1_1Storage.html#a863a8f88e49765dd32c920914556bea9">data</a>() { <span class="keywordflow">return</span> data_; }</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classmatt_1_1Storage.html#af03e4e0a91fec7ceb9e5c8d2d6fa0b32">   17</a></span>    <span class="keyword">const</span> <span class="keywordtype">float</span>* <a class="code hl_function" href="classmatt_1_1Storage.html#af03e4e0a91fec7ceb9e5c8d2d6fa0b32">data</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> data_; }</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classmatt_1_1Storage.html#a4c379a25a91430941a547469c9766137">   19</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_function" href="classmatt_1_1Storage.html#a4c379a25a91430941a547469c9766137">size</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> size_; }</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classmatt_1_1Storage.html#a58dc96ca9ca3b2f789f54441126c1ade">   20</a></span>    <a class="code hl_class" href="classmatt_1_1Device.html">Device</a> <a class="code hl_function" href="classmatt_1_1Storage.html#a58dc96ca9ca3b2f789f54441126c1ade">device</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> device_; }</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">float</span>* data_ = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">size_t</span> size_ = 0;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <a class="code hl_class" href="classmatt_1_1Device.html">Device</a> device_;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <a class="code hl_class" href="classmatt_1_1Backend.html">Backend</a>* backend_;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>};</div>
 </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>}</div>
-<div class="ttc" id="aclassmatt_1_1Storage_html"><div class="ttname"><a href="classmatt_1_1Storage.html">matt::Storage</a></div><div class="ttdef"><b>Definition</b> storage.hpp:8</div></div>
-<div class="ttc" id="aclassmatt_1_1Storage_html_a4c379a25a91430941a547469c9766137"><div class="ttname"><a href="classmatt_1_1Storage.html#a4c379a25a91430941a547469c9766137">matt::Storage::size</a></div><div class="ttdeci">size_t size() const</div><div class="ttdef"><b>Definition</b> storage.hpp:15</div></div>
-<div class="ttc" id="aclassmatt_1_1Storage_html_a863a8f88e49765dd32c920914556bea9"><div class="ttname"><a href="classmatt_1_1Storage.html#a863a8f88e49765dd32c920914556bea9">matt::Storage::data</a></div><div class="ttdeci">float * data()</div><div class="ttdef"><b>Definition</b> storage.hpp:13</div></div>
-<div class="ttc" id="aclassmatt_1_1Storage_html_af03e4e0a91fec7ceb9e5c8d2d6fa0b32"><div class="ttname"><a href="classmatt_1_1Storage.html#af03e4e0a91fec7ceb9e5c8d2d6fa0b32">matt::Storage::data</a></div><div class="ttdeci">const float * data() const</div><div class="ttdef"><b>Definition</b> storage.hpp:14</div></div>
-<div class="ttc" id="anamespacematt_html"><div class="ttname"><a href="namespacematt.html">matt</a></div><div class="ttdef"><b>Definition</b> grad_fn.cpp:5</div></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>}</div>
+<div class="ttc" id="abackend_8hpp_html"><div class="ttname"><a href="backend_8hpp.html">backend.hpp</a></div></div>
+<div class="ttc" id="aclassmatt_1_1Backend_html"><div class="ttname"><a href="classmatt_1_1Backend.html">matt::Backend</a></div><div class="ttdef"><b>Definition</b> backend.hpp:15</div></div>
+<div class="ttc" id="aclassmatt_1_1Device_html"><div class="ttname"><a href="classmatt_1_1Device.html">matt::Device</a></div><div class="ttdef"><b>Definition</b> device.hpp:11</div></div>
+<div class="ttc" id="aclassmatt_1_1Storage_html"><div class="ttname"><a href="classmatt_1_1Storage.html">matt::Storage</a></div><div class="ttdef"><b>Definition</b> storage.hpp:11</div></div>
+<div class="ttc" id="aclassmatt_1_1Storage_html_a4c379a25a91430941a547469c9766137"><div class="ttname"><a href="classmatt_1_1Storage.html#a4c379a25a91430941a547469c9766137">matt::Storage::size</a></div><div class="ttdeci">size_t size() const</div><div class="ttdef"><b>Definition</b> storage.hpp:19</div></div>
+<div class="ttc" id="aclassmatt_1_1Storage_html_a58dc96ca9ca3b2f789f54441126c1ade"><div class="ttname"><a href="classmatt_1_1Storage.html#a58dc96ca9ca3b2f789f54441126c1ade">matt::Storage::device</a></div><div class="ttdeci">Device device() const</div><div class="ttdef"><b>Definition</b> storage.hpp:20</div></div>
+<div class="ttc" id="aclassmatt_1_1Storage_html_a863a8f88e49765dd32c920914556bea9"><div class="ttname"><a href="classmatt_1_1Storage.html#a863a8f88e49765dd32c920914556bea9">matt::Storage::data</a></div><div class="ttdeci">float * data()</div><div class="ttdef"><b>Definition</b> storage.hpp:16</div></div>
+<div class="ttc" id="aclassmatt_1_1Storage_html_aa4f89dd5fe9c7fd80a37048ee7f0868e"><div class="ttname"><a href="classmatt_1_1Storage.html#aa4f89dd5fe9c7fd80a37048ee7f0868e">matt::Storage::~Storage</a></div><div class="ttdeci">~Storage()</div><div class="ttdef"><b>Definition</b> storage.cpp:11</div></div>
+<div class="ttc" id="aclassmatt_1_1Storage_html_af03e4e0a91fec7ceb9e5c8d2d6fa0b32"><div class="ttname"><a href="classmatt_1_1Storage.html#af03e4e0a91fec7ceb9e5c8d2d6fa0b32">matt::Storage::data</a></div><div class="ttdeci">const float * data() const</div><div class="ttdef"><b>Definition</b> storage.hpp:17</div></div>
+<div class="ttc" id="adevice_8hpp_html"><div class="ttname"><a href="device_8hpp.html">device.hpp</a></div></div>
+<div class="ttc" id="anamespacematt_html"><div class="ttname"><a href="namespacematt.html">matt</a></div><div class="ttdef"><b>Definition</b> backend.cpp:8</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

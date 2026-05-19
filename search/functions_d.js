@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['register_5fmodule_0',['register_module',['../classmatt_1_1nn_1_1Module.html#a14f8f9a7d2e886925636de54f4029987',1,'matt::nn::Module']]],
-  ['register_5fparameter_1',['register_parameter',['../classmatt_1_1nn_1_1Module.html#a508888153fbfa0714892419b4d760468',1,'matt::nn::Module']]],
-  ['relu_2',['relu',['../namespacematt_1_1ops.html#a7e5fb42a34013c3b2a0257ecc8e121bc',1,'matt::ops']]],
-  ['requires_5fgrad_3',['requires_grad',['../classmatt_1_1Tensor.html#aaf5e9871bcdf984dfa05dc775499f809',1,'matt::Tensor']]],
-  ['reshape_4',['reshape',['../classmatt_1_1Tensor.html#ad5e8e252ca227e267dcb42a59f49e048',1,'matt::Tensor']]]
+  ['parameters_0',['parameters',['../classmatt_1_1nn_1_1Module.html#a88ad652a8fc46af7dbe3f5eeef1b088b',1,'matt::nn::Module']]],
+  ['print_1',['print',['../classmatt_1_1Tensor.html#ad575a8c99c02bffd315706c041fc846d',1,'matt::Tensor']]]
 ];

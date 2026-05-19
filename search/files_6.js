@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['tensor_2ecpp_0',['tensor.cpp',['../tensor_8cpp.html',1,'']]],
-  ['tensor_2ehpp_1',['tensor.hpp',['../tensor_8hpp.html',1,'']]]
+  ['ops_2ecpp_0',['ops.cpp',['../ops_8cpp.html',1,'']]],
+  ['ops_2ehpp_1',['ops.hpp',['../ops_8hpp.html',1,'']]],
+  ['optimizer_2ehpp_2',['optimizer.hpp',['../optimizer_8hpp.html',1,'']]]
 ];

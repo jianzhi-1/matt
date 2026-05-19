@@ -92,6 +92,7 @@ $(document).ready(function(){initNavTree('namespacematt.html',''); initResizable
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">matt Namespace Reference</div></div>
 </div><!--header-->
@@ -112,7 +113,15 @@ Namespaces</h2></td></tr>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmatt_1_1AddBackward.html">AddBackward</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmatt_1_1Backend.html">Backend</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmatt_1_1BinaryGradFn.html">BinaryGradFn</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmatt_1_1CPUBackend.html">CPUBackend</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmatt_1_1CUDABackend.html">CUDABackend</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmatt_1_1Device.html">Device</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmatt_1_1GradFn.html">GradFn</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,11 +146,139 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmatt_1_1UnaryGradFn.html">UnaryGradFn</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a48ca51a4615e7983995478ad2af48684" id="r_a48ca51a4615e7983995478ad2af48684"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacematt.html#a48ca51a4615e7983995478ad2af48684">BinaryOpType</a> { <a class="el" href="namespacematt.html#a48ca51a4615e7983995478ad2af48684aec211f7c20af43e742bf2570c3cb84f9">Add</a>
+, <a class="el" href="namespacematt.html#a48ca51a4615e7983995478ad2af48684ae80155eceb940c89e2de63ad05868db2">Sub</a>
+, <a class="el" href="namespacematt.html#a48ca51a4615e7983995478ad2af48684a62b6d55816cf737bfc6f42e60df1a3f2">Mul</a>
+ }</td></tr>
+<tr class="separator:a48ca51a4615e7983995478ad2af48684"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9ca6f1b2701a213a771726599f520c2" id="r_ae9ca6f1b2701a213a771726599f520c2"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacematt.html#ae9ca6f1b2701a213a771726599f520c2">UnaryOpType</a> { <a class="el" href="namespacematt.html#ae9ca6f1b2701a213a771726599f520c2a7bfde445daa113a9903d4eaa43b41e2b">Relu</a>
+, <a class="el" href="namespacematt.html#ae9ca6f1b2701a213a771726599f520c2a67d9ebb87ad2c62fe6b9de06c8da7fa5">Negate</a>
+ }</td></tr>
+<tr class="separator:ae9ca6f1b2701a213a771726599f520c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd5415b9e2375ce721d31ba49ec59170" id="r_afd5415b9e2375ce721d31ba49ec59170"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacematt.html#afd5415b9e2375ce721d31ba49ec59170">ReduceOpType</a> { <a class="el" href="namespacematt.html#afd5415b9e2375ce721d31ba49ec59170aa0ec87054b5e5b7847d0d8780a01a3d5">Sum</a>
+ }</td></tr>
+<tr class="separator:afd5415b9e2375ce721d31ba49ec59170"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19c9b4ab4bb9d4d2881ad46909fb54d1" id="r_a19c9b4ab4bb9d4d2881ad46909fb54d1"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacematt.html#a19c9b4ab4bb9d4d2881ad46909fb54d1">DeviceType</a> { <a class="el" href="namespacematt.html#a19c9b4ab4bb9d4d2881ad46909fb54d1a2b55387dd066c5bac646ac61543d152d">CPU</a>
+, <a class="el" href="namespacematt.html#a19c9b4ab4bb9d4d2881ad46909fb54d1aa33b7755e5f9b504d2d038eaca4ff28d">CUDA</a>
+ }</td></tr>
+<tr class="separator:a19c9b4ab4bb9d4d2881ad46909fb54d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ad74f46a446e100c1ea5f3b814b7732f4" id="r_ad74f46a446e100c1ea5f3b814b7732f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmatt_1_1Backend.html">Backend</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacematt.html#ad74f46a446e100c1ea5f3b814b7732f4">get_backend</a> (<a class="el" href="classmatt_1_1Device.html">Device</a> device)</td></tr>
+<tr class="separator:ad74f46a446e100c1ea5f3b814b7732f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac8db869984bb041874dd21d7f62fb2b" id="r_aac8db869984bb041874dd21d7f62fb2b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacematt.html#aac8db869984bb041874dd21d7f62fb2b">memory_transfer</a> (float *dst, <a class="el" href="classmatt_1_1Backend.html">Backend</a> *dst_backend, const float *src, <a class="el" href="classmatt_1_1Backend.html">Backend</a> *src_backend, size_t n)</td></tr>
+<tr class="separator:aac8db869984bb041874dd21d7f62fb2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb63c0bae648ca322b58e7143a68e0b9" id="r_acb63c0bae648ca322b58e7143a68e0b9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacematt.html#acb63c0bae648ca322b58e7143a68e0b9">allclose</a> (const <a class="el" href="classmatt_1_1Tensor.html">Tensor</a> &amp;a, const <a class="el" href="classmatt_1_1Tensor.html">Tensor</a> &amp;b, float tol)</td></tr>
 <tr class="separator:acb63c0bae648ca322b58e7143a68e0b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a48ca51a4615e7983995478ad2af48684" name="a48ca51a4615e7983995478ad2af48684"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48ca51a4615e7983995478ad2af48684">&#9670;&#160;</a></span>BinaryOpType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="namespacematt.html#a48ca51a4615e7983995478ad2af48684">matt::BinaryOpType</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a48ca51a4615e7983995478ad2af48684aec211f7c20af43e742bf2570c3cb84f9" name="a48ca51a4615e7983995478ad2af48684aec211f7c20af43e742bf2570c3cb84f9"></a>Add&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a48ca51a4615e7983995478ad2af48684ae80155eceb940c89e2de63ad05868db2" name="a48ca51a4615e7983995478ad2af48684ae80155eceb940c89e2de63ad05868db2"></a>Sub&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a48ca51a4615e7983995478ad2af48684a62b6d55816cf737bfc6f42e60df1a3f2" name="a48ca51a4615e7983995478ad2af48684a62b6d55816cf737bfc6f42e60df1a3f2"></a>Mul&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a19c9b4ab4bb9d4d2881ad46909fb54d1" name="a19c9b4ab4bb9d4d2881ad46909fb54d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19c9b4ab4bb9d4d2881ad46909fb54d1">&#9670;&#160;</a></span>DeviceType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="namespacematt.html#a19c9b4ab4bb9d4d2881ad46909fb54d1">matt::DeviceType</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a19c9b4ab4bb9d4d2881ad46909fb54d1a2b55387dd066c5bac646ac61543d152d" name="a19c9b4ab4bb9d4d2881ad46909fb54d1a2b55387dd066c5bac646ac61543d152d"></a>CPU&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a19c9b4ab4bb9d4d2881ad46909fb54d1aa33b7755e5f9b504d2d038eaca4ff28d" name="a19c9b4ab4bb9d4d2881ad46909fb54d1aa33b7755e5f9b504d2d038eaca4ff28d"></a>CUDA&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="afd5415b9e2375ce721d31ba49ec59170" name="afd5415b9e2375ce721d31ba49ec59170"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd5415b9e2375ce721d31ba49ec59170">&#9670;&#160;</a></span>ReduceOpType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="namespacematt.html#afd5415b9e2375ce721d31ba49ec59170">matt::ReduceOpType</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="afd5415b9e2375ce721d31ba49ec59170aa0ec87054b5e5b7847d0d8780a01a3d5" name="afd5415b9e2375ce721d31ba49ec59170aa0ec87054b5e5b7847d0d8780a01a3d5"></a>Sum&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="ae9ca6f1b2701a213a771726599f520c2" name="ae9ca6f1b2701a213a771726599f520c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9ca6f1b2701a213a771726599f520c2">&#9670;&#160;</a></span>UnaryOpType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="namespacematt.html#ae9ca6f1b2701a213a771726599f520c2">matt::UnaryOpType</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ae9ca6f1b2701a213a771726599f520c2a7bfde445daa113a9903d4eaa43b41e2b" name="ae9ca6f1b2701a213a771726599f520c2a7bfde445daa113a9903d4eaa43b41e2b"></a>Relu&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae9ca6f1b2701a213a771726599f520c2a67d9ebb87ad2c62fe6b9de06c8da7fa5" name="ae9ca6f1b2701a213a771726599f520c2a67d9ebb87ad2c62fe6b9de06c8da7fa5"></a>Negate&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="acb63c0bae648ca322b58e7143a68e0b9" name="acb63c0bae648ca322b58e7143a68e0b9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acb63c0bae648ca322b58e7143a68e0b9">&#9670;&#160;</a></span>allclose()</h2>
@@ -166,6 +303,70 @@ Functions</h2></td></tr>
           <td></td>
           <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>tol</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad74f46a446e100c1ea5f3b814b7732f4" name="ad74f46a446e100c1ea5f3b814b7732f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad74f46a446e100c1ea5f3b814b7732f4">&#9670;&#160;</a></span>get_backend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmatt_1_1Backend.html">Backend</a> * matt::get_backend </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmatt_1_1Device.html">Device</a>&#160;</td>
+          <td class="paramname"><em>device</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aac8db869984bb041874dd21d7f62fb2b" name="aac8db869984bb041874dd21d7f62fb2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac8db869984bb041874dd21d7f62fb2b">&#9670;&#160;</a></span>memory_transfer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void matt::memory_transfer </td>
+          <td>(</td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classmatt_1_1Backend.html">Backend</a> *&#160;</td>
+          <td class="paramname"><em>dst_backend</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classmatt_1_1Backend.html">Backend</a> *&#160;</td>
+          <td class="paramname"><em>src_backend</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

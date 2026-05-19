@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['gradfn_0',['GradFn',['../classmatt_1_1GradFn.html',1,'matt']]]
+  ['cpubackend_0',['CPUBackend',['../classmatt_1_1CPUBackend.html',1,'matt']]],
+  ['cudabackend_1',['CUDABackend',['../classmatt_1_1CUDABackend.html',1,'matt']]]
 ];

@@ -11,6 +11,7 @@ var classmatt_1_1Tensor =
     [ "data", "classmatt_1_1Tensor.html#ae57f2c9fa98db8f14c24f6b31736b526", null ],
     [ "data_ptr", "classmatt_1_1Tensor.html#a95b06ec3974bc900c545d557413d579e", null ],
     [ "data_ptr", "classmatt_1_1Tensor.html#a3aa0f9a4766a1d1602bf7c2a392dabbb", null ],
+    [ "device", "classmatt_1_1Tensor.html#a13393ac1c6f910c4955e1c6adbc3bbd5", null ],
     [ "expand", "classmatt_1_1Tensor.html#a1c101eaae231eeb9bcbc550d3e4050ef", null ],
     [ "is_contiguous", "classmatt_1_1Tensor.html#a111d598f50d7cb49e2acfb6246e94ff5", null ],
     [ "ndim", "classmatt_1_1Tensor.html#a6c99324b2014187a86de160fb64aaef7", null ],

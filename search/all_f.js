@@ -16,14 +16,15 @@ var searchData=
   ['slice_13',['slice',['../classmatt_1_1Tensor.html#ab28e3e1a6af45c8a47e729fc2dafd1b0',1,'matt::Tensor']]],
   ['softmax_14',['softmax',['../namespacematt_1_1ops.html#aef852210ff0500e7cebb2a46fbdf3b43',1,'matt::ops']]],
   ['step_15',['step',['../classmatt_1_1optim_1_1Optimizer.html#aba5f56158af079b013af5e673a3fa060',1,'matt::optim::Optimizer::step()'],['../classmatt_1_1optim_1_1SGD.html#ab3d8357dc8851414c6ff6f0eb71a7487',1,'matt::optim::SGD::step()']]],
-  ['storage_16',['storage',['../classmatt_1_1Storage.html',1,'matt::Storage'],['../classmatt_1_1Storage.html#a4c1df32fd56e15361f972300b033ddaf',1,'matt::Storage::Storage(size_t size)'],['../classmatt_1_1Storage.html#ada508f8c915595233e7cdeb1636a9231',1,'matt::Storage::Storage(size_t size, float fill_value)']]],
+  ['storage_16',['storage',['../classmatt_1_1Storage.html',1,'matt::Storage'],['../classmatt_1_1Storage.html#a3da00d0cfcfd3457139376dfec85ec9c',1,'matt::Storage::Storage()']]],
   ['storage_2ecpp_17',['storage.cpp',['../storage_8cpp.html',1,'']]],
   ['storage_2ehpp_18',['storage.hpp',['../storage_8hpp.html',1,'']]],
-  ['strides_19',['strides',['../classmatt_1_1Tensor.html#a380cfcbbf9a0cb6d2b8b0572a954f0c3',1,'matt::Tensor']]],
-  ['sub_20',['sub',['../namespacematt_1_1ops.html#af6030ec2b866e29a69ab9373cfbf6e36',1,'matt::ops']]],
-  ['subbackward_21',['SubBackward',['../classmatt_1_1SubBackward.html',1,'matt']]],
-  ['subop_22',['SubOp',['../classmatt_1_1ops_1_1SubOp.html',1,'matt::ops']]],
-  ['sum_23',['sum',['../namespacematt_1_1ops.html#a80012db7ba08ab5a180683e051bc965d',1,'matt::ops']]],
-  ['sumbackward_24',['SumBackward',['../classmatt_1_1SumBackward.html',1,'matt']]],
-  ['sumop_25',['SumOp',['../classmatt_1_1ops_1_1SumOp.html',1,'matt::ops']]]
+  ['str_19',['str',['../classmatt_1_1Device.html#a328d3a3498af3f42e9536fba1c2629c8',1,'matt::Device']]],
+  ['strides_20',['strides',['../classmatt_1_1Tensor.html#a380cfcbbf9a0cb6d2b8b0572a954f0c3',1,'matt::Tensor']]],
+  ['sub_21',['sub',['../namespacematt.html#a48ca51a4615e7983995478ad2af48684ae80155eceb940c89e2de63ad05868db2',1,'matt::Sub'],['../namespacematt_1_1ops.html#af6030ec2b866e29a69ab9373cfbf6e36',1,'matt::ops::sub()']]],
+  ['subbackward_22',['SubBackward',['../classmatt_1_1SubBackward.html',1,'matt']]],
+  ['subop_23',['SubOp',['../classmatt_1_1ops_1_1SubOp.html',1,'matt::ops']]],
+  ['sum_24',['sum',['../namespacematt_1_1ops.html#a80012db7ba08ab5a180683e051bc965d',1,'matt::ops::sum()'],['../namespacematt.html#afd5415b9e2375ce721d31ba49ec59170aa0ec87054b5e5b7847d0d8780a01a3d5',1,'matt::Sum']]],
+  ['sumbackward_25',['SumBackward',['../classmatt_1_1SumBackward.html',1,'matt']]],
+  ['sumop_26',['SumOp',['../classmatt_1_1ops_1_1SumOp.html',1,'matt::ops']]]
 ];

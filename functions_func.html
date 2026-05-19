@@ -94,7 +94,8 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <h3><a id="index_a" name="index_a"></a>- a -</h3><ul>
 <li>add()&#160;:&#160;<a class="el" href="classmatt_1_1nn_1_1Sequential.html#a2575fa9a55c694e6b2d9a02bbc265093">matt::nn::Sequential</a></li>
 <li>add_module()&#160;:&#160;<a class="el" href="classmatt_1_1nn_1_1Sequential.html#aa837d70eb8048df32b340cf8d8f758be">matt::nn::Sequential</a></li>
-<li>arange()&#160;:&#160;<a class="el" href="classmatt_1_1Tensor.html#a68f2cc439fa84d60dfbbe7158ce50d6a">matt::Tensor</a></li>
+<li>allocate()&#160;:&#160;<a class="el" href="classmatt_1_1Backend.html#acd5c986241e559dfebc9c24b52f75640">matt::Backend</a>, <a class="el" href="classmatt_1_1CPUBackend.html#a04ee31522ab48a44792d97b961c70ac0">matt::CPUBackend</a>, <a class="el" href="classmatt_1_1CUDABackend.html#a135d9b9b4fb1dbdb3728badaaad5baad">matt::CUDABackend</a></li>
+<li>arange()&#160;:&#160;<a class="el" href="classmatt_1_1Tensor.html#a496eb97ae1ab15f8817d5aa3b3266aa5">matt::Tensor</a></li>
 <li>at()&#160;:&#160;<a class="el" href="classmatt_1_1Tensor.html#a6b486224648491a73d18991f0bf8b242">matt::Tensor</a></li>
 </ul>
 
@@ -108,30 +109,46 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 
 <h3><a id="index_c" name="index_c"></a>- c -</h3><ul>
 <li>contiguous()&#160;:&#160;<a class="el" href="classmatt_1_1Tensor.html#a0f46086d0040b398106b73f40dcd79aa">matt::Tensor</a></li>
+<li>cpu()&#160;:&#160;<a class="el" href="classmatt_1_1Device.html#a68808ad897e7e52290d1fb278331b0da">matt::Device</a></li>
+<li>cuda()&#160;:&#160;<a class="el" href="classmatt_1_1Device.html#a90acbeb45e2d7a395f5bcac682bcb625">matt::Device</a></li>
 </ul>
 
 
 <h3><a id="index_d" name="index_d"></a>- d -</h3><ul>
 <li>data()&#160;:&#160;<a class="el" href="classmatt_1_1Storage.html#a863a8f88e49765dd32c920914556bea9">matt::Storage</a>, <a class="el" href="classmatt_1_1Tensor.html#ae57f2c9fa98db8f14c24f6b31736b526">matt::Tensor</a></li>
 <li>data_ptr()&#160;:&#160;<a class="el" href="classmatt_1_1Tensor.html#a95b06ec3974bc900c545d557413d579e">matt::Tensor</a></li>
+<li>deallocate()&#160;:&#160;<a class="el" href="classmatt_1_1Backend.html#a46703cd4317b96805bf80f73101101bf">matt::Backend</a>, <a class="el" href="classmatt_1_1CPUBackend.html#a91ad376d2f87eca6b241855662fddf16">matt::CPUBackend</a>, <a class="el" href="classmatt_1_1CUDABackend.html#a44816e36783c9cc5754bdb0c2b8da264">matt::CUDABackend</a></li>
+<li>device()&#160;:&#160;<a class="el" href="classmatt_1_1Backend.html#a4461ebbaade7bcb2596a442d5179c4d1">matt::Backend</a>, <a class="el" href="classmatt_1_1CPUBackend.html#aaccc1296b82b0ba10bb077c2b8e4c490">matt::CPUBackend</a>, <a class="el" href="classmatt_1_1CUDABackend.html#ac3ba575e73afb050f87917a3a6f42a73">matt::CUDABackend</a></li>
+<li>Device()&#160;:&#160;<a class="el" href="classmatt_1_1Device.html#a03e15841eeae457bad014c324b48ff7e">matt::Device</a></li>
+<li>device()&#160;:&#160;<a class="el" href="classmatt_1_1Storage.html#a58dc96ca9ca3b2f789f54441126c1ade">matt::Storage</a>, <a class="el" href="classmatt_1_1Tensor.html#a13393ac1c6f910c4955e1c6adbc3bbd5">matt::Tensor</a></li>
 </ul>
 
 
 <h3><a id="index_e" name="index_e"></a>- e -</h3><ul>
+<li>elementwise_binary()&#160;:&#160;<a class="el" href="classmatt_1_1Backend.html#afdbfc12e74f51ebffae61771292dd9c9">matt::Backend</a>, <a class="el" href="classmatt_1_1CPUBackend.html#ac668ff2e4ac13c41430fa7da8d9d3efd">matt::CPUBackend</a>, <a class="el" href="classmatt_1_1CUDABackend.html#ac81ae600459e0338a10b032c4c0c4d1b">matt::CUDABackend</a></li>
+<li>elementwise_unary()&#160;:&#160;<a class="el" href="classmatt_1_1Backend.html#a7da15c4672a76b1bbf43e71fca9990f2">matt::Backend</a>, <a class="el" href="classmatt_1_1CPUBackend.html#a820c2bbb16c27a71bb96737a931b15c7">matt::CPUBackend</a>, <a class="el" href="classmatt_1_1CUDABackend.html#ab7cab7746a10a1d906a0eb68ff97e69b">matt::CUDABackend</a></li>
 <li>expand()&#160;:&#160;<a class="el" href="classmatt_1_1Tensor.html#a1c101eaae231eeb9bcbc550d3e4050ef">matt::Tensor</a></li>
 </ul>
 
 
 <h3><a id="index_f" name="index_f"></a>- f -</h3><ul>
-<li>fill()&#160;:&#160;<a class="el" href="classmatt_1_1Tensor.html#af58ae0ee81e888f9b567f2bbe61d6742">matt::Tensor</a></li>
+<li>fill()&#160;:&#160;<a class="el" href="classmatt_1_1Backend.html#ab2d49bc12d567d237f444030199b8ada">matt::Backend</a>, <a class="el" href="classmatt_1_1CPUBackend.html#a0f3d80c3fff957f58d1fa7f153e17f29">matt::CPUBackend</a>, <a class="el" href="classmatt_1_1CUDABackend.html#ab635ccc99baa011e9062ce247d836800">matt::CUDABackend</a>, <a class="el" href="classmatt_1_1Tensor.html#a2bcf65e6693961c41501d4dd875c11cc">matt::Tensor</a></li>
 <li>forward()&#160;:&#160;<a class="el" href="classmatt_1_1nn_1_1Linear.html#a3975f2b4148ced37b587e6aa1cc9a179">matt::nn::Linear</a>, <a class="el" href="classmatt_1_1nn_1_1Module.html#adc6312215cf8b860a6c7e532d212fd54">matt::nn::Module</a>, <a class="el" href="classmatt_1_1nn_1_1MSELoss.html#a00668a052219ab1f6edd4763f32efc47">matt::nn::MSELoss</a>, <a class="el" href="classmatt_1_1nn_1_1ReLU.html#a4062d47f53dbf555b7f8a145af30bef2">matt::nn::ReLU</a>, <a class="el" href="classmatt_1_1nn_1_1Sequential.html#a0bca38bf63842a680381f2f3701c9d80">matt::nn::Sequential</a>, <a class="el" href="classmatt_1_1ops_1_1AddOp.html#a367217376a10f7d6a0a06a1f743b43be">matt::ops::AddOp</a>, <a class="el" href="classmatt_1_1ops_1_1MatmulOp.html#aca0c8bd2f4bddde157e215754b7b1527">matt::ops::MatmulOp</a>, <a class="el" href="classmatt_1_1ops_1_1MulOp.html#a0de975f1b72560bad2558ab04da1197d">matt::ops::MulOp</a>, <a class="el" href="classmatt_1_1ops_1_1ReluOp.html#aeaa4bd06252a5b7a188b66688128a113">matt::ops::ReluOp</a>, <a class="el" href="classmatt_1_1ops_1_1SubOp.html#a7f2429219b2b52319d1a8ee95dc31fb9">matt::ops::SubOp</a>, <a class="el" href="classmatt_1_1ops_1_1SumOp.html#abb0f877158fc3f2aed670d28684865db">matt::ops::SumOp</a></li>
-<li>from_data()&#160;:&#160;<a class="el" href="classmatt_1_1Tensor.html#a0a207bafa07ba816bc93248791eac0c4">matt::Tensor</a></li>
+<li>from_data()&#160;:&#160;<a class="el" href="classmatt_1_1Tensor.html#a4a18fc9c740791d54b0f06ba69a5543f">matt::Tensor</a></li>
+</ul>
+
+
+<h3><a id="index_g" name="index_g"></a>- g -</h3><ul>
+<li>get()&#160;:&#160;<a class="el" href="classmatt_1_1CPUBackend.html#afb3b57fa6079c4f2fc709b47407836f9">matt::CPUBackend</a>, <a class="el" href="classmatt_1_1CUDABackend.html#ae1eb2f8ff2067f4f100e1e9d97e18bdc">matt::CUDABackend</a></li>
 </ul>
 
 
 <h3><a id="index_i" name="index_i"></a>- i -</h3><ul>
+<li>index()&#160;:&#160;<a class="el" href="classmatt_1_1Device.html#a72db6459522f1e167a100ec6763a2f44">matt::Device</a></li>
 <li>initialize()&#160;:&#160;<a class="el" href="classmatt_1_1nn_1_1weight__initializer_1_1KaimingUniform.html#a9f993b151f6e254271a2bf180597fdf5">matt::nn::weight_initializer::KaimingUniform</a>, <a class="el" href="classmatt_1_1nn_1_1weight__initializer_1_1Normal.html#a20b94427990b2eb27c5195f721c9b7bf">matt::nn::weight_initializer::Normal</a>, <a class="el" href="classmatt_1_1nn_1_1weight__initializer_1_1Uniform.html#ab6f572141af7b75e62b4bff192857d29">matt::nn::weight_initializer::Uniform</a>, <a class="el" href="classmatt_1_1nn_1_1weight__initializer_1_1WeightInitializer.html#a9d9434b78b4b476e7b4a746afd075f52">matt::nn::weight_initializer::WeightInitializer</a>, <a class="el" href="classmatt_1_1nn_1_1weight__initializer_1_1Zeros.html#aa6a6998a888ed421da7b5390ab17c385">matt::nn::weight_initializer::Zeros</a></li>
 <li>is_contiguous()&#160;:&#160;<a class="el" href="classmatt_1_1Tensor.html#a111d598f50d7cb49e2acfb6246e94ff5">matt::Tensor</a></li>
+<li>is_cpu()&#160;:&#160;<a class="el" href="classmatt_1_1Device.html#a45de0eca641bf4ae2e0540c60d1e4afb">matt::Device</a></li>
+<li>is_cuda()&#160;:&#160;<a class="el" href="classmatt_1_1Device.html#a9666937026acd615d15c7ec5163e514d">matt::Device</a></li>
 <li>is_training()&#160;:&#160;<a class="el" href="classmatt_1_1nn_1_1Module.html#af10a4fe09469f2e7a149f528997e2519">matt::nn::Module</a></li>
 </ul>
 
@@ -150,6 +167,7 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 
 <h3><a id="index_m" name="index_m"></a>- m -</h3><ul>
 <li>make_grad_fn()&#160;:&#160;<a class="el" href="classmatt_1_1ops_1_1BinaryOp.html#a6b5cfec00a5e88299303215726417ec9">matt::ops::BinaryOp&lt; GradFnType &gt;</a>, <a class="el" href="classmatt_1_1ops_1_1UnaryOp.html#ae25644fda90c835f475d7b605eb3c267">matt::ops::UnaryOp&lt; GradFnType &gt;</a></li>
+<li>matmul()&#160;:&#160;<a class="el" href="classmatt_1_1Backend.html#a99f6223c4995bf10a640241db9ad336f">matt::Backend</a>, <a class="el" href="classmatt_1_1CPUBackend.html#abb1ecf78601cdee5fd5c60950eac946d">matt::CPUBackend</a>, <a class="el" href="classmatt_1_1CUDABackend.html#a9ee5e488e18da3162ba29948fdf02cf7">matt::CUDABackend</a></li>
 </ul>
 
 
@@ -164,7 +182,9 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 
 <h3><a id="index_o" name="index_o"></a>- o -</h3><ul>
 <li>offset()&#160;:&#160;<a class="el" href="classmatt_1_1Tensor.html#a8d8a6b714290de64793c770d82d472dc">matt::Tensor</a></li>
-<li>ones()&#160;:&#160;<a class="el" href="classmatt_1_1Tensor.html#aa18b84d68bf38b8741f2b90f5eabc846">matt::Tensor</a></li>
+<li>ones()&#160;:&#160;<a class="el" href="classmatt_1_1Tensor.html#a3930eace0cb7a68154a0fb32d3061439">matt::Tensor</a></li>
+<li>operator!=()&#160;:&#160;<a class="el" href="classmatt_1_1Device.html#aa74ef5ab0cb7eb4385c55cfafed85e43">matt::Device</a></li>
+<li>operator==()&#160;:&#160;<a class="el" href="classmatt_1_1Device.html#a7d1db509c394c941d3110b370644b659">matt::Device</a></li>
 <li>Optimizer()&#160;:&#160;<a class="el" href="classmatt_1_1optim_1_1Optimizer.html#a1f8a5bf5ac1848c8911038bada54269b">matt::optim::Optimizer</a></li>
 </ul>
 
@@ -176,6 +196,7 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 
 
 <h3><a id="index_r" name="index_r"></a>- r -</h3><ul>
+<li>reduce()&#160;:&#160;<a class="el" href="classmatt_1_1Backend.html#af1c83dc8f1f7429c998412a00572a403">matt::Backend</a>, <a class="el" href="classmatt_1_1CPUBackend.html#afb118e09e05938710c8f5f2d3672e7d8">matt::CPUBackend</a>, <a class="el" href="classmatt_1_1CUDABackend.html#a3a658cb83bff809939a69efaf8735e14">matt::CUDABackend</a></li>
 <li>register_module()&#160;:&#160;<a class="el" href="classmatt_1_1nn_1_1Module.html#a14f8f9a7d2e886925636de54f4029987">matt::nn::Module</a></li>
 <li>register_parameter()&#160;:&#160;<a class="el" href="classmatt_1_1nn_1_1Module.html#a508888153fbfa0714892419b4d760468">matt::nn::Module</a></li>
 <li>requires_grad()&#160;:&#160;<a class="el" href="classmatt_1_1Tensor.html#aaf5e9871bcdf984dfa05dc775499f809">matt::Tensor</a></li>
@@ -194,7 +215,8 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>size()&#160;:&#160;<a class="el" href="classmatt_1_1Storage.html#a4c379a25a91430941a547469c9766137">matt::Storage</a></li>
 <li>slice()&#160;:&#160;<a class="el" href="classmatt_1_1Tensor.html#ab28e3e1a6af45c8a47e729fc2dafd1b0">matt::Tensor</a></li>
 <li>step()&#160;:&#160;<a class="el" href="classmatt_1_1optim_1_1Optimizer.html#aba5f56158af079b013af5e673a3fa060">matt::optim::Optimizer</a>, <a class="el" href="classmatt_1_1optim_1_1SGD.html#ab3d8357dc8851414c6ff6f0eb71a7487">matt::optim::SGD</a></li>
-<li>Storage()&#160;:&#160;<a class="el" href="classmatt_1_1Storage.html#a4c1df32fd56e15361f972300b033ddaf">matt::Storage</a></li>
+<li>Storage()&#160;:&#160;<a class="el" href="classmatt_1_1Storage.html#a3da00d0cfcfd3457139376dfec85ec9c">matt::Storage</a></li>
+<li>str()&#160;:&#160;<a class="el" href="classmatt_1_1Device.html#a328d3a3498af3f42e9536fba1c2629c8">matt::Device</a></li>
 <li>strides()&#160;:&#160;<a class="el" href="classmatt_1_1Tensor.html#a380cfcbbf9a0cb6d2b8b0572a954f0c3">matt::Tensor</a></li>
 </ul>
 
@@ -215,14 +237,16 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 
 <h3><a id="index_z" name="index_z"></a>- z -</h3><ul>
 <li>zero_grad()&#160;:&#160;<a class="el" href="classmatt_1_1nn_1_1Module.html#adfb4b219592e479450c2bb5d38ad4f3a">matt::nn::Module</a>, <a class="el" href="classmatt_1_1optim_1_1Optimizer.html#a87c567f094f75155af5ddd590cf14fb4">matt::optim::Optimizer</a></li>
-<li>zeros()&#160;:&#160;<a class="el" href="classmatt_1_1Tensor.html#a91338bb95243c9fd23c83d4ba52c624a">matt::Tensor</a></li>
+<li>zeros()&#160;:&#160;<a class="el" href="classmatt_1_1Tensor.html#afc060f7a3891d4538a832f93c8c546e2">matt::Tensor</a></li>
 </ul>
 
 
 <h3><a id="index__7E" name="index__7E"></a>- ~ -</h3><ul>
+<li>~Backend()&#160;:&#160;<a class="el" href="classmatt_1_1Backend.html#aad0f3391ccb67e129bbee0a7e47f910c">matt::Backend</a></li>
 <li>~GradFn()&#160;:&#160;<a class="el" href="classmatt_1_1GradFn.html#af19bb0fdfbf5e1bb8343f0598bdc1b3d">matt::GradFn</a></li>
 <li>~Module()&#160;:&#160;<a class="el" href="classmatt_1_1nn_1_1Module.html#ae5936986bc2788870c51354130eefd7b">matt::nn::Module</a></li>
 <li>~Optimizer()&#160;:&#160;<a class="el" href="classmatt_1_1optim_1_1Optimizer.html#a168c6f101ada2773a29e54cafb538605">matt::optim::Optimizer</a></li>
+<li>~Storage()&#160;:&#160;<a class="el" href="classmatt_1_1Storage.html#aa4f89dd5fe9c7fd80a37048ee7f0868e">matt::Storage</a></li>
 <li>~WeightInitializer()&#160;:&#160;<a class="el" href="classmatt_1_1nn_1_1weight__initializer_1_1WeightInitializer.html#a0d8ca188941d6e4d44cbce6de943973a">matt::nn::weight_initializer::WeightInitializer</a></li>
 </ul>
 </div><!-- contents -->

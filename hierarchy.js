@@ -1,5 +1,10 @@
 var hierarchy =
 [
+    [ "matt::Backend", "classmatt_1_1Backend.html", [
+      [ "matt::CPUBackend", "classmatt_1_1CPUBackend.html", null ],
+      [ "matt::CUDABackend", "classmatt_1_1CUDABackend.html", null ]
+    ] ],
+    [ "matt::Device", "classmatt_1_1Device.html", null ],
     [ "matt::GradFn", "classmatt_1_1GradFn.html", [
       [ "matt::BinaryGradFn", "classmatt_1_1BinaryGradFn.html", [
         [ "matt::AddBackward", "classmatt_1_1AddBackward.html", null ],
